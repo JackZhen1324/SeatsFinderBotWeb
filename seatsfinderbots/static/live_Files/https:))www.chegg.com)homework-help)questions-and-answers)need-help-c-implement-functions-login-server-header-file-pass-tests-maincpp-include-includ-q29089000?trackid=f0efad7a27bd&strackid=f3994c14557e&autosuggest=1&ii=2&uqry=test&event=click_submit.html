@@ -1,0 +1,319 @@
+ <!DOCTYPE html> <html lang="zh_cn"> <head> <meta charset="UTF-8"> </head> <body>  <h1>Question: </h1><h3><div class="ugc-base question-body-text">
+			<div class=""><p style="margin-left:0px;margin-right:0px;">NEED HELP! C++</p>
+<p style="margin-left:0px;margin-right:0px;">How can i implement
+the functions in the login server header file to pass all tests in
+main.cpp?</p>
+<p>#include<br>
+#include<br>
+#include<br>
+#include "loginserver.h"</p>
+<p>using namespace std;</p>
+<p><br>
+inline void _test(const char* expression, const char* file, int
+line)<br>
+{<br>
+        cerr &lt;&lt; "test("
+&lt;&lt; expression &lt;&lt; ") failed in file " &lt;&lt;
+file;<br>
+cerr &lt;&lt; ", line " &lt;&lt; line &lt;&lt; "." &lt;&lt;
+endl;<br>
+        abort();<br>
+}</p>
+<p>#define test(EXPRESSION) ((EXPRESSION) ? (void)0 :
+_test(#EXPRESSION, __FILE__, __LINE__))</p>
+<p>int main()<br>
+{<br>
+LoginServer ls;</p>
+<p><br>
+// Test total_user_count(), create_user()<br>
+test(ls.create_user("Ernesto", "p455w0rd"));<br>
+test(ls.total_user_count() == 1);<br>
+test(ls.create_user("Ruby", "QwErTy123"));<br>
+test(ls.total_user_count() == 2);<br>
+test(ls.create_user("Hugo", "1l0v3c4t5"));<br>
+test(ls.total_user_count() == 3);<br>
+test(ls.create_user("Margo", "Din0s4ur5!"));<br>
+test(ls.total_user_count() == 4);<br>
+test(ls.create_user("Berta", "!sc00p0f00d!"));<br>
+test(ls.total_user_count() == 5);</p>
+<p>test(!ls.create_user("Berta", "anotherp455"));<br>
+test(ls.total_user_count() == 5);<br>
+<br>
+test(ls.delete_user("Berta", "!sc00p0f00d!"));<br>
+test(ls.total_user_count() == 4);<br>
+test(!ls.delete_user("Ernesto", "wrongpassword"));<br>
+test(ls.total_user_count() == 4);<br>
+test(!ls.delete_user("Ernesto", "Din0s4ur5!"));<br>
+test(ls.total_user_count() == 4);<br>
+test(!ls.delete_user("Berta", "!sc00p0f00d!"));<br>
+test(ls.total_user_count() == 4);</p>
+<p>test(ls.create_user("Berta", "!sc00p0f00d!"));<br>
+test(ls.total_user_count() == 5);</p>
+<p><br>
+// Test login(), logout(), is_logged_in()<br>
+test(!ls.is_logged_in("Ernesto"));<br>
+test(!ls.is_logged_in("Ruby"));<br>
+test(!ls.is_logged_in("Hugo"));<br>
+test(!ls.is_logged_in("Margo"));<br>
+test(!ls.is_logged_in("Berta"));<br>
+test(!ls.is_logged_in("Unknown"));</p>
+<p>test(ls.login("Ernesto", "p455w0rd"));<br>
+test(ls.is_logged_in("Ernesto"));<br>
+test(!ls.is_logged_in("Ruby"));<br>
+test(!ls.is_logged_in("Hugo"));<br>
+test(!ls.is_logged_in("Margo"));<br>
+test(!ls.is_logged_in("Berta"));</p>
+<p>test(ls.logout("Ernesto"));<br>
+test(!ls.is_logged_in("Ernesto"));<br>
+test(!ls.is_logged_in("Ruby"));<br>
+test(!ls.is_logged_in("Hugo"));<br>
+test(!ls.is_logged_in("Margo"));<br>
+test(!ls.is_logged_in("Berta"));</p>
+<p>test(ls.login("Ruby", "QwErTy123"));<br>
+test(ls.login("Hugo", "1l0v3c4t5"));<br>
+test(!ls.is_logged_in("Ernesto"));<br>
+test(ls.is_logged_in("Ruby"));<br>
+test(ls.is_logged_in("Hugo"));<br>
+test(!ls.is_logged_in("Margo"));<br>
+test(!ls.is_logged_in("Berta"));</p>
+<p>test(ls.logout("Ruby"));<br>
+test(ls.logout("Hugo"));<br>
+test(!ls.is_logged_in("Ernesto"));<br>
+test(!ls.is_logged_in("Ruby"));<br>
+test(!ls.is_logged_in("Hugo"));<br>
+test(!ls.is_logged_in("Margo"));<br>
+test(!ls.is_logged_in("Berta"));</p>
+<p>test(ls.login("Ruby", "QwErTy123"));<br>
+test(ls.login("Berta", "!sc00p0f00d!"));<br>
+test(!ls.is_logged_in("Ernesto"));<br>
+test(ls.is_logged_in("Ruby"));<br>
+test(!ls.is_logged_in("Hugo"));<br>
+test(!ls.is_logged_in("Margo"));<br>
+test(ls.is_logged_in("Berta"));</p>
+<p>// Test logging in with wrong password<br>
+test(!ls.login("Margo", "idontknow"));<br>
+test(!ls.is_logged_in("Ernesto"));<br>
+test(ls.is_logged_in("Ruby"));<br>
+test(!ls.is_logged_in("Hugo"));<br>
+test(!ls.is_logged_in("Margo"));<br>
+test(ls.is_logged_in("Berta"));</p>
+<p>// Test logging in when already logged in<br>
+test(!ls.login("Ruby", "QwErTy123"));<br>
+test(!ls.is_logged_in("Ernesto"));<br>
+test(ls.is_logged_in("Ruby"));<br>
+test(!ls.is_logged_in("Hugo"));<br>
+test(!ls.is_logged_in("Margo"));<br>
+test(ls.is_logged_in("Berta"));</p>
+<p>// Test logging in a user that doesn't exist<br>
+test(!ls.login("Stranger", "Question!"));<br>
+test(!ls.is_logged_in("Ernesto"));<br>
+test(ls.is_logged_in("Ruby"));<br>
+test(!ls.is_logged_in("Hugo"));<br>
+test(!ls.is_logged_in("Margo"));<br>
+test(ls.is_logged_in("Berta"));</p>
+<p>// Test logging out someone not logged in<br>
+test(!ls.logout("Hugo"));<br>
+test(!ls.is_logged_in("Ernesto"));<br>
+test(ls.is_logged_in("Ruby"));<br>
+test(!ls.is_logged_in("Hugo"));<br>
+test(!ls.is_logged_in("Margo"));<br>
+test(ls.is_logged_in("Berta"));</p>
+<p>// Test logging out a user that doesn't exist<br>
+test(!ls.logout("Stranger"));<br>
+test(!ls.is_logged_in("Ernesto"));<br>
+test(ls.is_logged_in("Ruby"));<br>
+test(!ls.is_logged_in("Hugo"));<br>
+test(!ls.is_logged_in("Margo"));<br>
+test(ls.is_logged_in("Berta"));</p>
+<p>test(ls.logout("Ruby"));<br>
+test(ls.logout("Berta"));<br>
+test(!ls.is_logged_in("Ernesto"));<br>
+test(!ls.is_logged_in("Ruby"));<br>
+test(!ls.is_logged_in("Hugo"));<br>
+test(!ls.is_logged_in("Margo"));<br>
+test(!ls.is_logged_in("Berta"));</p>
+<p><br>
+// Test active_user_count()<br>
+test(ls.active_user_count() == 0);<br>
+ls.login("Ernesto", "p455w0rd");<br>
+test(ls.active_user_count() == 1);<br>
+ls.login("Ruby", "QwErTy123");<br>
+test(ls.active_user_count() == 2);<br>
+ls.login("Berta", "!sc00p0f00d!");<br>
+test(ls.active_user_count() == 3);<br>
+ls.login("Berta", "!sc00p0f00d!"); // Already logged in<br>
+test(ls.active_user_count() == 3);<br>
+ls.login("Berta", "!3x3rc1s3!");   // Wrong
+password<br>
+test(ls.active_user_count() == 3);<br>
+ls.login("Stranger", "_Secret_"); // Not a user<br>
+test(ls.active_user_count() == 3);<br>
+ls.logout("Berto");               
+// Not a user<br>
+test(ls.active_user_count() == 3);<br>
+ls.logout("Margo");               
+// Not logged in<br>
+test(ls.active_user_count() == 3);<br>
+ls.logout("Berta");<br>
+test(ls.active_user_count() == 2);<br>
+ls.logout("Ernesto");<br>
+test(ls.active_user_count() == 1);<br>
+ls.logout("Ruby");<br>
+test(ls.active_user_count() == 0);<br>
+ls.logout("Berta");              
+// Not logged in<br>
+test(ls.active_user_count() == 0);</p>
+<p><br>
+// Test logout_everyone()<br>
+ls.login("Ernesto", "p455w0rd");<br>
+ls.login("Ruby", "QwErTy123");<br>
+ls.login("Hugo", "1l0v3c4t5");<br>
+ls.login("Margo", "Din0s4ur5!");<br>
+ls.login("Berta", "!sc00p0f00d!");<br>
+ls.logout_everyone();<br>
+test(!ls.is_logged_in("Ernesto"));<br>
+test(!ls.is_logged_in("Ruby"));<br>
+test(!ls.is_logged_in("Hugo"));<br>
+test(!ls.is_logged_in("Margo"));<br>
+test(!ls.is_logged_in("Berta"));<br>
+test(ls.active_user_count() == 0);</p>
+<p>ls.login("Margo", "Din0s4ur5!");<br>
+ls.login("Berta", "!sc00p0f00d!");<br>
+ls.logout_everyone();<br>
+test(!ls.is_logged_in("Ernesto"));<br>
+test(!ls.is_logged_in("Ruby"));<br>
+test(!ls.is_logged_in("Hugo"));<br>
+test(!ls.is_logged_in("Margo"));<br>
+test(!ls.is_logged_in("Berta"));<br>
+test(ls.active_user_count() == 0);</p>
+<p>ls.logout_everyone();<br>
+test(!ls.is_logged_in("Ernesto"));<br>
+test(!ls.is_logged_in("Ruby"));<br>
+test(!ls.is_logged_in("Hugo"));<br>
+test(!ls.is_logged_in("Margo"));<br>
+test(!ls.is_logged_in("Berta"));<br>
+test(ls.active_user_count() == 0);</p>
+<p><br>
+// Test change_password()<br>
+test(ls.login("Ernesto", "p455w0rd"));<br>
+ls.logout("Ernesto");<br>
+test(!ls.login("Ernesto", "p455w0rd!"));<br>
+test(!ls.login("Ernesto", "d1ff3r3nt!"));</p>
+<p>ls.change_password("Ernesto", "p455w0rd", "p455w0rd!");</p>
+<p>test(!ls.login("Ernesto", "p455w0rd"));<br>
+test(ls.login("Ernesto", "p455w0rd!"));<br>
+ls.logout("Ernesto");<br>
+test(!ls.login("Ernesto", "d1ff3r3nt!"));</p>
+<p>ls.change_password("Ernesto", "p455w0rd!", "d1ff3r3nt!");</p>
+<p>test(!ls.login("Ernesto", "p455w0rd"));<br>
+test(!ls.login("Ernesto", "p455w0rd!"));<br>
+test(ls.login("Ernesto", "d1ff3r3nt!"));<br>
+ls.logout("Ernesto");</p>
+<p>test(!ls.change_password("Ernesto", "wr0ng", "wr0ng2"));</p>
+<p>test(!ls.login("Ernesto", "p455w0rd"));<br>
+test(!ls.login("Ernesto", "p455w0rd!"));<br>
+test(ls.login("Ernesto", "d1ff3r3nt!"));<br>
+ls.logout("Ernesto");</p>
+<p>test(!ls.change_password("Ernesto", "p455w0rd", "wr0ng2"));</p>
+<p>test(!ls.login("Ernesto", "p455w0rd"));<br>
+test(!ls.login("Ernesto", "p455w0rd!"));<br>
+test(ls.login("Ernesto", "d1ff3r3nt!"));<br>
+ls.logout("Ernesto");</p>
+<p>// Try to change the password of a user that doesn't exist<br>
+test(!ls.change_password("Stranger", "Question!",
+"Question!2"));<br>
+test(!ls.is_logged_in("Stranger"));<br>
+test(ls.total_user_count() == 5);<br>
+test(!ls.login("Stranger", "Question!"));<br>
+test(!ls.login("Stranger", "Question!2"));<br>
+<br>
+<br>
+// Test delete_user()<br>
+test(ls.delete_user("Ernesto", "d1ff3r3nt!"));<br>
+test(ls.total_user_count() == 4);</p>
+<p>// Try to delete a user by giving the wrong password<br>
+test(!ls.delete_user("Ruby", "NoErTy345"));<br>
+test(ls.total_user_count() == 4);<br>
+test(ls.login("Ruby", "QwErTy123"));<br>
+ls.logout("Ruby");</p>
+<p>// Try to delete users that don't exist<br>
+test(!ls.delete_user("Unknown", "p455w0rd"));<br>
+test(ls.total_user_count() == 4);</p>
+<p>test(!ls.delete_user("Ernesto", "d1ff3r3nt!"));<br>
+test(ls.total_user_count() == 4);</p>
+<p><br>
+cout &lt;&lt; "Assignment complete." &lt;&lt; endl;<br>
+system("pause");<br>
+}</p>
+<p>
+--------------------------------------------------------------------------------------------------------------------------</p>
+<p>//header file</p>
+<p>#ifndef LOGINSERVER_H<br>
+#define LOGINSERVER_H</p>
+<p>#include<br>
+#include<br>
+#include</p>
+<p>using namespace std;</p>
+<p>class LoginServer<br>
+{<br>
+public:<br>
+  // Creates a new server with no accounts.<br>
+  LoginServer();</p>
+<p>  // Adds a user to the system with the<br>
+  // parameter username and password.<br>
+  // Returns false if the LoginServer already has
+an<br>
+  // account with the parameter username. Otherwise
+returns true.<br>
+  bool create_user(string username, string password);</p>
+<p>  // Deletes a user from the system with the specified
+info.<br>
+  // Returns true if the parameter information was
+valid<br>
+  // (and the user was successfully deleted).<br>
+  // Otherwise returns false.<br>
+  bool delete_user(string username, string password);</p>
+<p>  // Returns the total number of accounts in the
+system.<br>
+  int total_user_count();</p>
+<p>  // Tries to log in a user.<br>
+  // Returns true if there is a user with this
+password<br>
+  // that is not already logged in (i.e. whether login
+occurred).<br>
+  // Otherwise returns false.<br>
+  bool login(string username, string password);</p>
+<p>  // Tries to log out a user.<br>
+  // Returns true if a user with this user name was
+logged in.<br>
+  // Otherwise returns false.<br>
+  bool logout(string username);</p>
+<p>  // Returns true if a user with this name is logged
+in.<br>
+  // Otherwise returns false.<br>
+  bool is_logged_in(string username);</p>
+<p>  // Returns the number of logged-in users.<br>
+  int active_user_count();</p>
+<p>  // Logs out all users.<br>
+  void logout_everyone();</p>
+<p>  // Changes a user's password.<br>
+  // Returns true if there is an account with the
+parameter<br>
+  // username and password old_pw (i.e. the password
+changed).<br>
+  // Otherwise returns false.<br>
+  bool change_password(string username, string
+old_pw,<br>
+   string new_pw);</p>
+<p><br>
+private:<br>
+  // Stores the usernames of logged-in users<br>
+  unordered_set S;</p>
+<p>  // Stores the mapping from usernames to
+passwords.<br>
+  unordered_map M;<br>
+};</p>
+<p>#endif</p>
+</div>
+			
+		</div></h3> </body> </html> 

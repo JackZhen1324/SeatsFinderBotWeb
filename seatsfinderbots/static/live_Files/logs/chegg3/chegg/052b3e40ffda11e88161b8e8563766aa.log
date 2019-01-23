@@ -1,0 +1,75 @@
+2018-12-14 12:54:13 [scrapy.utils.log] INFO: Scrapy 1.5.1 started (bot: cheggviewer)
+2018-12-14 12:54:13 [scrapy.utils.log] INFO: Versions: lxml 4.2.4.0, libxml2 2.9.8, cssselect 1.0.3, parsel 1.5.0, w3lib 1.19.0, Twisted 18.7.0, Python 2.7.10 (default, Oct  6 2017, 22:29:07) - [GCC 4.2.1 Compatible Apple LLVM 9.0.0 (clang-900.0.31)], pyOpenSSL 18.0.0 (OpenSSL 1.1.0i  14 Aug 2018), cryptography 2.3.1, Platform Darwin-17.7.0-x86_64-i386-64bit
+2018-12-14 12:54:13 [scrapy.crawler] INFO: Overridden settings: {'NEWSPIDER_MODULE': 'cheggviewer.spiders', 'CONCURRENT_REQUESTS': 1, 'SPIDER_MODULES': ['cheggviewer.spiders'], 'CONCURRENT_REQUESTS_PER_IP': 1, 'BOT_NAME': 'cheggviewer', 'LOG_FILE': 'logs/chegg3/chegg/052b3e40ffda11e88161b8e8563766aa.log'}
+2018-12-14 12:54:13 [py.warnings] WARNING: /Library/Python/2.7/site-packages/scrapy_jsonrpc/webservice.py:4: ScrapyDeprecationWarning: Module `scrapy.log` has been deprecated, Scrapy now relies on the builtin Python library for logging. Read the updated logging entry in the documentation to learn more.
+  from scrapy import log, signals
+
+2018-12-14 12:54:13 [py.warnings] WARNING: /Library/Python/2.7/site-packages/scrapy_jsonrpc/serialize.py:8: ScrapyDeprecationWarning: Module `scrapy.spider` is deprecated, use `scrapy.spiders` instead
+  from scrapy.spider import Spider
+
+2018-12-14 12:54:13 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.logstats.LogStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.corestats.CoreStats',
+ 'scrapy_jsonrpc.webservice.WebService']
+2018-12-14 12:54:13 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['cheggviewer.JSMiddleware.PhantomJSMiddleware',
+ 'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2018-12-14 12:54:13 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2018-12-14 12:54:13 [scrapy.middleware] INFO: Enabled item pipelines:
+['cheggviewer.pipelines.CheggviewerPipeline']
+2018-12-14 12:54:13 [scrapy.core.engine] INFO: Spider opened
+2018-12-14 12:54:13 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2018-12-14 12:54:13 [py.warnings] WARNING: /Library/Python/2.7/site-packages/scrapy/spidermiddlewares/offsite.py:59: URLWarning: allowed_domains accepts only domains, not URLs. Ignoring URL entry http://www.chegg.com in allowed_domains.
+  warnings.warn("allowed_domains accepts only domains, not URLs. Ignoring URL entry %s in allowed_domains." % domain, URLWarning)
+
+2018-12-14 12:54:13 [scrapy.extensions.telnet] DEBUG: Telnet console listening on 127.0.0.1:6023
+2018-12-14 12:54:13 [py.warnings] WARNING: /Library/Python/2.7/site-packages/scrapy_jsonrpc/webservice.py:90: ScrapyDeprecationWarning: log.msg has been deprecated, create a python logger and log through it instead
+  level=log.DEBUG, host=h.host, port=h.port)
+
+2018-12-14 12:54:13 [scrapy.log] DEBUG: Web service listening on 127.0.0.1:6024
+2018-12-14 12:54:14 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.chegg.com/homework-help/questions-and-answers/homework-hw3-ch2-score-0-5-pts-2563-t-70f-10-6-complete-recent-years-many-nations-suffered-q26591486?trackid=5020d571&strackid=6ce6ba95&ii=3> (referer: None)
+2018-12-14 12:54:14 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.chegg.com/homework-help/questions-and-answers/homework-hw3-ch2-score-0-5-pts-2563-t-70f-10-6-complete-recent-years-many-nations-suffered-q26591486?trackid=5020d571&strackid=6ce6ba95&ii=3>
+{'content': u' <h1>Question: </h1><h3><div class="ugc-base question-body-text">\t\t\t<div class=""><div style="font-family:\'Helvetica Neue\', Helvetica, Arial;color:#333333;"><div><br><img src="https://media.cheggcdn.com/media%2F8b4%2F8b4ba237-810f-4d34-a8f2-d0c5bd5f4de5%2Fimage" alt="Homework: Hw3-Ch2 Score: 0 of 5 pts 2.5.63-T 70f 10 (6 complete) \u25bc In recent years, many nations have suffered from relatively high youth unemployment. For 28 regions, the accompanying table shows the unemployment rate among 15-to 24-year-olds in a particular year. Use the data table to answer the following questions. a. Find and interpret the second quartile (median). b. Find and interpret the first quartile (Q1). c. Find and interpret the third quartile (Q3). d. Will the 10th percentile be around the value of 5 or 15? Explain."></div><div><img src="https://media.cheggcdn.com/media%2F793%2F793c8cae-d00e-44d1-9e00-23af6132d808%2Fimage" alt="media%2F793%2F793c8cae-d00e-44d1-9e00-23"></div></div></div>\t\t\t<span class="transcribed-text">Show transcribed image text</span> <span class="transcribed-image-text hidden">Homework: Hw3-Ch2 Score: 0 of 5 pts 2.5.63-T 70f 10 (6 complete) \u25bc In recent years, many nations have suffered from relatively high youth unemployment. For 28 regions, the accompanying table shows the unemployment rate among 15-to 24-year-olds in a particular year. Use the data table to answer the following questions. a. Find and interpret the second quartile (median). b. Find and interpret the first quartile (Q1). c. Find and interpret the third quartile (Q3). d. Will the 10th percentile be around the value of 5 or 15? Explain. </span>\t\t</div></h3>',
+ 'filename': 'https:))www.chegg.com)homework-help)questions-and-answers)homework-hw3-ch2-score-0-5-pts-2563-t-70f-10-6-complete-recent-years-many-nations-suffered-q26591486?trackid=5020d571&strackid=6ce6ba95&ii=3',
+ 'receiver': 'xhdp123@126.com',
+ 'url': 'https://www.chegg.com/homework-help/questions-and-answers/homework-hw3-ch2-score-0-5-pts-2563-t-70f-10-6-complete-recent-years-many-nations-suffered-q26591486?trackid=5020d571&strackid=6ce6ba95&ii=3'}
+2018-12-14 12:54:14 [scrapy.core.engine] INFO: Closing spider (finished)
+2018-12-14 12:54:14 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'downloader/request_bytes': 543,
+ 'downloader/request_count': 1,
+ 'downloader/request_method_count/GET': 1,
+ 'downloader/response_bytes': 19814,
+ 'downloader/response_count': 1,
+ 'downloader/response_status_count/200': 1,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2018, 12, 14, 19, 54, 14, 297837),
+ 'item_scraped_count': 1,
+ 'log_count/DEBUG': 4,
+ 'log_count/INFO': 7,
+ 'log_count/WARNING': 4,
+ 'memusage/max': 56995840,
+ 'memusage/startup': 56995840,
+ 'response_received_count': 1,
+ 'scheduler/dequeued': 1,
+ 'scheduler/dequeued/memory': 1,
+ 'scheduler/enqueued': 1,
+ 'scheduler/enqueued/memory': 1,
+ 'start_time': datetime.datetime(2018, 12, 14, 19, 54, 13, 511418)}
+2018-12-14 12:54:14 [scrapy.core.engine] INFO: Spider closed (finished)

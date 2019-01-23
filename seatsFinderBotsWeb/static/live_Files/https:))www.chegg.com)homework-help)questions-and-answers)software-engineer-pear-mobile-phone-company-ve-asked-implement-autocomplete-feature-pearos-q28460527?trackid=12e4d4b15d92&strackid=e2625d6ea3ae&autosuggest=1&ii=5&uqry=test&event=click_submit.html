@@ -1,0 +1,604 @@
+ <!DOCTYPE html> <html lang="zh_cn"> <head> <meta charset="UTF-8"> </head> <body>  <h1>Question: </h1><h3><div class="ugc-base question-body-text">
+			<div class=""><p>You are a software engineer at Pear, a mobile phone company.
+You’ve been asked to implement the “autocomplete” feature of
+PearOS. Autocomplete suggests how a partially typed word might be
+completed into a word from a list, e.g. a dictionary (see Figure
+1).</p>
+<p>Figure 1: Autocomplete suggests “afternoon” and “after” as
+completions of “aft”.</p>
+<p>Because the data might depend upon the user and what words they
+use most commonly, adding words to the list must be permitted. To
+keep up with your users’ typing, your code must give suggestions
+extremely fast (?(log n) time). However, changing the list via
+adding words is allowed to be slow (?(n) time). A dynamic array of
+sorted words that uses binary search to find suggestions would
+work.</p>
+<p>The following files have been given to you:<br>
+<br>
+1. A C++ header file (autocompleter.h) declaring the Autocompleter
+class.</p>
+<p>2. A C++ source file (main.cpp) containing a main() function
+with tests.</p>
+<p>3. A text file (words.txt) containing 10000 common words</p>
+<p>Create new C++ source file named autocompleter.cpp that
+implements the function declared in autocompleter.h so that
+autocompleter.cpp and the provided files compile into a program
+that runs with no failed tests.<br>
+<br>
+Hint: The Autocompleter data structure uses a sorted dynamic array
+A of strings. Implementing completion_count() and completions()
+efficiently requires quickly locating where strings starting with x
+occur in A. The leftmost string starting with x occurs at the
+location where x would be if it were contained in A (i.e., the
+location returned by index_of(x, A, len)). Also, all of the strings
+starting with x occur consecutively, starting with the leftmost
+string at index_of(x, A, len).</p>
+<p>//AUTOCOMPLETER.H</p>
+<p>#ifndef AUTOCOMPLETER_H<br>
+#define AUTOCOMPLETER_H</p>
+<p>#include &lt;string&gt;</p>
+<p>using namespace std;</p>
+<p>class Autocompleter<br>
+{<br>
+    public:<br>
+        // Creates a new, empty
+autocompleter.<br>
+        Autocompleter();<br>
+  <br>
+        // Adds x to the list of
+potential suggestions in the Autocompleter.<br>
+        // If the word is
+already in the Autocompleter, does nothing.<br>
+        //<br>
+        // Must run in O(n)
+time.<br>
+        void insert(string
+x);</p>
+<p>        // Returns the number
+of strings in the Autocompleter.<br>
+        int size();</p>
+<p>        // Returns the number
+of strings that are completions of<br>
+        // the parameter string
+x.<br>
+        //<br>
+        // Must run in O(log(n))
+time.<br>
+        int
+completion_count(string x);</p>
+<p>        // Takes a string
+(named x) and string array of length 5 (named suggestions)<br>
+        // Sets the first five
+elements of suggestions equal<br>
+        // to the first five (in
+lexicographic order) strings<br>
+        // in the Autocompleter
+that start with x.<br>
+        //<br>
+        // If there are less
+than five such strings, the remaining<br>
+        // entries of the
+suggestions array are set to "" (the empty string)<br>
+        //<br>
+        // Must run in O(log(n))
+time.<br>
+        void completions(string
+x, string* suggestions);</p>
+<p>    private:<br>
+        // Optional helper
+method.<br>
+        //<br>
+        // Assumes A is
+sorted.<br>
+        // If x is in A, returns
+the index of A containing x.<br>
+        // Otherwise, returns
+the index of A where x would be<br>
+        // after calling
+add(x).<br>
+        //<br>
+        // Should run in
+O(log(n)) time (use binary search).<br>
+        int index_of(string x,
+string* A, int n);</p>
+<p>        // The data structure
+should consist of<br>
+        // a dynamic array of
+sorted strings.<br>
+        string* A;<br>
+        int count;<br>
+        int capacity;<br>
+};</p>
+<p>#endif<br>
+//END HEADER FILE</p>
+<p>--------------------------------</p>
+<p>//MAIN.CPP</p>
+<p><br>
+#include &lt;iostream&gt;<br>
+#include &lt;fstream&gt;<br>
+#include &lt;cassert&gt;<br>
+#include &lt;string&gt;<br>
+#include "autocompleter.h"</p>
+<p>using namespace std;</p>
+<p>inline void _test(const char* expression, const char* file, int
+line)<br>
+{<br>
+    cerr &lt;&lt; "test(" &lt;&lt; expression
+&lt;&lt; ") failed in file " &lt;&lt; file;<br>
+    cerr &lt;&lt; ", line " &lt;&lt; line &lt;&lt;
+"." &lt;&lt; endl;<br>
+        abort();<br>
+}</p>
+<p>#define test(EXPRESSION) ((EXPRESSION) ? (void)0 :
+_test(#EXPRESSION, __FILE__, __LINE__))</p>
+<p><br>
+string random_string(int length)<br>
+{<br>
+    string s;<br>
+    for (int i = 0; i &lt; length; ++i)<br>
+        s += 'a' + (rand() %
+26);<br>
+    return s;<br>
+}</p>
+<p>void interactive_mode()<br>
+{<br>
+    Autocompleter dictionary;</p>
+<p>    // Fill autocompleter with words<br>
+    ifstream f;<br>
+    f.open("words.txt");<br>
+    assert(f.is_open()); // If this fails, you're
+missing above file<br>
+    string line;<br>
+    while (getline(f, line))<br>
+       
+dictionary.insert(line);<br>
+    f.close();</p>
+<p>    string results[5];<br>
+    while (cin)<br>
+    {<br>
+        string line;<br>
+        getline(cin,
+line);<br>
+       
+dictionary.completions(line, results);<br>
+        for (int i = 0; i &lt;
+5; ++i)<br>
+           
+if (results[i] != "")<br>
+               
+cout &lt;&lt; "    " &lt;&lt; results[i] &lt;&lt;
+endl;<br>
+    }<br>
+    exit(0);<br>
+}</p>
+<p>int main()<br>
+{<br>
+    srand(2017); // Initialize random number
+generation, e.g. rand()<br>
+    string results[5]; // Used to hold output
+suggestions in some tests</p>
+<p><br>
+    // Uncomment line below to use your
+Autocompleter interactively.<br>
+    // Enter a string and press Enter - the
+autocompletions<br>
+    // results from the 10000 most common words are
+printed.<br>
+    //<br>
+    //interactive_mode();</p>
+<p><br>
+    // Test a small Autocompleter with animal
+names<br>
+    Autocompleter animals;<br>
+    test(animals.size() == 0);</p>
+<p>    animals.insert("aardvark");<br>
+    animals.insert("albatross");<br>
+    animals.insert("alpaca");<br>
+    animals.insert("armadillo");<br>
+    animals.insert("camel");<br>
+    animals.insert("cat");<br>
+    animals.insert("crocodile");<br>
+    animals.insert("crow");<br>
+    animals.insert("giraffe");<br>
+    animals.insert("goat");<br>
+    animals.insert("goose");<br>
+    animals.insert("gorilla");<br>
+    test(animals.size() == 12);</p>
+<p>    animals.insert("gorilla"); // Already in the
+Autocompleter<br>
+    test(animals.size() == 12);</p>
+<p>    test(animals.completion_count("a") ==
+4);<br>
+    test(animals.completion_count("al") == 2);<br>
+    test(animals.completion_count("cro") ==
+2);<br>
+    test(animals.completion_count("gir") ==
+1);<br>
+    test(animals.completion_count("go") == 3);</p>
+<p>    test(animals.completion_count("") == 12);</p>
+<p>    test(animals.completion_count("an") ==
+0);<br>
+    test(animals.completion_count("q") == 0);<br>
+    test(animals.completion_count("goat-billed
+carp") == 0);</p>
+<p><br>
+    // Create an autocompleter of 10000 common
+English words<br>
+    Autocompleter dictionary;</p>
+<p>    // Fill autocompleter with words<br>
+    string* words = new string[10000];<br>
+    ifstream f;<br>
+    f.open("words.txt");<br>
+    assert(f.is_open()); // If this fails, you're
+missing words.txt<br>
+    string line;<br>
+    int i = 0;<br>
+    while (getline(f, line))<br>
+    {<br>
+        words[i] = line;<br>
+        ++i;<br>
+    }<br>
+    f.close();<br>
+    assert(i == 10000); // If this fails, words.txt
+is wrong</p>
+<p>    for (int i = 0; i &lt; 10000; ++i)<br>
+       
+dictionary.insert(words[i]);<br>
+    test(dictionary.size() == 10000);</p>
+<p>    test(dictionary.completion_count("bir") ==
+5);<br>
+    test(dictionary.completion_count("hap") ==
+6);  <br>
+    test(dictionary.completion_count("program") ==
+7);<br>
+    test(dictionary.completion_count("foo") ==
+8);</p>
+<p><br>
+    // Test completions() on animals Autocompleter
+already made.<br>
+    animals.completions("a", results);<br>
+    test(results[0] == "aardvark");<br>
+    test(results[1] == "albatross");<br>
+    test(results[2] == "alpaca");<br>
+    test(results[3] == "armadillo");<br>
+    test(results[4] == "");</p>
+<p>    animals.completions("al", results);<br>
+    test(results[0] == "albatross");<br>
+    test(results[1] == "alpaca");<br>
+    test(results[2] == "");<br>
+    test(results[3] == "");<br>
+    test(results[4] == "");</p>
+<p>    animals.completions("cro", results);<br>
+    test(results[0] ==
+"crocodile");  <br>
+    test(results[1] == "crow");<br>
+    test(results[2] == "");<br>
+    test(results[3] == "");<br>
+    test(results[4] == "");</p>
+<p>    animals.completions("gir", results);<br>
+    test(results[0] == "giraffe");<br>
+    test(results[1] == "");<br>
+    test(results[2] == "");<br>
+    test(results[3] == "");<br>
+    test(results[4] == "");</p>
+<p>    animals.completions("go", results);<br>
+    test(results[0] == "goat");<br>
+    test(results[1] == "goose");<br>
+    test(results[2] == "gorilla");  <br>
+    test(results[3] == "");<br>
+    test(results[4] == "");</p>
+<p>    animals.completions("", results);<br>
+    test(results[0] == "aardvark");<br>
+    test(results[1] == "albatross");<br>
+    test(results[2] == "alpaca");<br>
+    test(results[3] == "armadillo");<br>
+    test(results[4] == "camel");</p>
+<p>    animals.completions("an", results);<br>
+    test(results[0] == "");<br>
+    test(results[1] == "");<br>
+    test(results[2] == "");<br>
+    test(results[3] == "");<br>
+    test(results[4] == "");</p>
+<p>    animals.completions("q", results);<br>
+    test(results[0] == "");<br>
+    test(results[1] == "");<br>
+    test(results[2] == "");<br>
+    test(results[3] == "");<br>
+    test(results[4] == "");</p>
+<p>    animals.completions("goat-billed carp",
+results);<br>
+    test(results[0] == "");<br>
+    test(results[1] == "");<br>
+    test(results[2] == "");<br>
+    test(results[3] == "");<br>
+    test(results[4] == "");</p>
+<p><br>
+    // Test completions() on dictionary
+Autocompleter already made.<br>
+    dictionary.completions("bir", results);<br>
+    test(results[0] == "bird");<br>
+    test(results[1] == "birds");<br>
+    test(results[2] == "birmingham");<br>
+    test(results[3] == "birth");<br>
+    test(results[4] == "birthday");</p>
+<p>    dictionary.completions("hap", results);<br>
+    test(results[0] == "happen");<br>
+    test(results[1] == "happened");<br>
+    test(results[2] == "happening");<br>
+    test(results[3] == "happens");<br>
+    test(results[4] == "happiness");</p>
+<p>    dictionary.completions("program",
+results);<br>
+    test(results[0] == "program");<br>
+    test(results[1] == "programme");<br>
+    test(results[2] == "programmer");<br>
+    test(results[3] == "programmers");<br>
+    test(results[4] == "programmes");</p>
+<p>    dictionary.completions("foo", results);<br>
+    test(results[0] == "foo");<br>
+    test(results[1] == "food");<br>
+    test(results[2] == "foods");<br>
+    test(results[3] == "fool");<br>
+    test(results[4] == "foot");</p>
+<p><br>
+    // Test Autocompleter for completing 100000
+words<br>
+    for (int i = 0; i &lt; 100000; ++i)<br>
+       
+dictionary.completion_count(random_string(5));</p>
+<p>    for (int i = 0; i &lt; 100000; ++i)<br>
+       
+dictionary.completions(random_string(5), results);</p>
+<p><br>
+    cout &lt;&lt; "Assignment complete." &lt;&lt;
+endl;<br>
+}</p>
+<p><br>
+#include &lt;iostream&gt;<br>
+#include &lt;fstream&gt;<br>
+#include &lt;cassert&gt;<br>
+#include &lt;string&gt;<br>
+#include "autocompleter.h"</p>
+<p>using namespace std;</p>
+<p>inline void _test(const char* expression, const char* file, int
+line)<br>
+{<br>
+    cerr &lt;&lt; "test(" &lt;&lt; expression
+&lt;&lt; ") failed in file " &lt;&lt; file;<br>
+    cerr &lt;&lt; ", line " &lt;&lt; line &lt;&lt;
+"." &lt;&lt; endl;<br>
+        abort();<br>
+}</p>
+<p>#define test(EXPRESSION) ((EXPRESSION) ? (void)0 :
+_test(#EXPRESSION, __FILE__, __LINE__))</p>
+<p><br>
+string random_string(int length)<br>
+{<br>
+    string s;<br>
+    for (int i = 0; i &lt; length; ++i)<br>
+        s += 'a' + (rand() %
+26);<br>
+    return s;<br>
+}</p>
+<p>void interactive_mode()<br>
+{<br>
+    Autocompleter dictionary;</p>
+<p>    // Fill autocompleter with words<br>
+    ifstream f;<br>
+    f.open("words.txt");<br>
+    assert(f.is_open()); // If this fails, you're
+missing above file<br>
+    string line;<br>
+    while (getline(f, line))<br>
+       
+dictionary.insert(line);<br>
+    f.close();</p>
+<p>    string results[5];<br>
+    while (cin)<br>
+    {<br>
+        string line;<br>
+        getline(cin,
+line);<br>
+       
+dictionary.completions(line, results);<br>
+        for (int i = 0; i &lt;
+5; ++i)<br>
+           
+if (results[i] != "")<br>
+               
+cout &lt;&lt; "    " &lt;&lt; results[i] &lt;&lt;
+endl;<br>
+    }<br>
+    exit(0);<br>
+}</p>
+<p>int main()<br>
+{<br>
+    srand(2017); // Initialize random number
+generation, e.g. rand()<br>
+    string results[5]; // Used to hold output
+suggestions in some tests</p>
+<p><br>
+    // Uncomment line below to use your
+Autocompleter interactively.<br>
+    // Enter a string and press Enter - the
+autocompletions<br>
+    // results from the 10000 most common words are
+printed.<br>
+    //<br>
+    //interactive_mode();</p>
+<p><br>
+    // Test a small Autocompleter with animal
+names<br>
+    Autocompleter animals;<br>
+    test(animals.size() == 0);</p>
+<p>    animals.insert("aardvark");<br>
+    animals.insert("albatross");<br>
+    animals.insert("alpaca");<br>
+    animals.insert("armadillo");<br>
+    animals.insert("camel");<br>
+    animals.insert("cat");<br>
+    animals.insert("crocodile");<br>
+    animals.insert("crow");<br>
+    animals.insert("giraffe");<br>
+    animals.insert("goat");<br>
+    animals.insert("goose");<br>
+    animals.insert("gorilla");<br>
+    test(animals.size() == 12);</p>
+<p>    animals.insert("gorilla"); // Already in the
+Autocompleter<br>
+    test(animals.size() == 12);</p>
+<p>    test(animals.completion_count("a") ==
+4);<br>
+    test(animals.completion_count("al") == 2);<br>
+    test(animals.completion_count("cro") ==
+2);<br>
+    test(animals.completion_count("gir") ==
+1);<br>
+    test(animals.completion_count("go") == 3);</p>
+<p>    test(animals.completion_count("") == 12);</p>
+<p>    test(animals.completion_count("an") ==
+0);<br>
+    test(animals.completion_count("q") == 0);<br>
+    test(animals.completion_count("goat-billed
+carp") == 0);</p>
+<p><br>
+    // Create an autocompleter of 10000 common
+English words<br>
+    Autocompleter dictionary;</p>
+<p>    // Fill autocompleter with words<br>
+    string* words = new string[10000];<br>
+    ifstream f;<br>
+    f.open("words.txt");<br>
+    assert(f.is_open()); // If this fails, you're
+missing words.txt<br>
+    string line;<br>
+    int i = 0;<br>
+    while (getline(f, line))<br>
+    {<br>
+        words[i] = line;<br>
+        ++i;<br>
+    }<br>
+    f.close();<br>
+    assert(i == 10000); // If this fails, words.txt
+is wrong</p>
+<p>    for (int i = 0; i &lt; 10000; ++i)<br>
+       
+dictionary.insert(words[i]);<br>
+    test(dictionary.size() == 10000);</p>
+<p>    test(dictionary.completion_count("bir") ==
+5);<br>
+    test(dictionary.completion_count("hap") ==
+6);  <br>
+    test(dictionary.completion_count("program") ==
+7);<br>
+    test(dictionary.completion_count("foo") ==
+8);</p>
+<p><br>
+    // Test completions() on animals Autocompleter
+already made.<br>
+    animals.completions("a", results);<br>
+    test(results[0] == "aardvark");<br>
+    test(results[1] == "albatross");<br>
+    test(results[2] == "alpaca");<br>
+    test(results[3] == "armadillo");<br>
+    test(results[4] == "");</p>
+<p>    animals.completions("al", results);<br>
+    test(results[0] == "albatross");<br>
+    test(results[1] == "alpaca");<br>
+    test(results[2] == "");<br>
+    test(results[3] == "");<br>
+    test(results[4] == "");</p>
+<p>    animals.completions("cro", results);<br>
+    test(results[0] ==
+"crocodile");  <br>
+    test(results[1] == "crow");<br>
+    test(results[2] == "");<br>
+    test(results[3] == "");<br>
+    test(results[4] == "");</p>
+<p>    animals.completions("gir", results);<br>
+    test(results[0] == "giraffe");<br>
+    test(results[1] == "");<br>
+    test(results[2] == "");<br>
+    test(results[3] == "");<br>
+    test(results[4] == "");</p>
+<p>    animals.completions("go", results);<br>
+    test(results[0] == "goat");<br>
+    test(results[1] == "goose");<br>
+    test(results[2] == "gorilla");  <br>
+    test(results[3] == "");<br>
+    test(results[4] == "");</p>
+<p>    animals.completions("", results);<br>
+    test(results[0] == "aardvark");<br>
+    test(results[1] == "albatross");<br>
+    test(results[2] == "alpaca");<br>
+    test(results[3] == "armadillo");<br>
+    test(results[4] == "camel");</p>
+<p>    animals.completions("an", results);<br>
+    test(results[0] == "");<br>
+    test(results[1] == "");<br>
+    test(results[2] == "");<br>
+    test(results[3] == "");<br>
+    test(results[4] == "");</p>
+<p>    animals.completions("q", results);<br>
+    test(results[0] == "");<br>
+    test(results[1] == "");<br>
+    test(results[2] == "");<br>
+    test(results[3] == "");<br>
+    test(results[4] == "");</p>
+<p>    animals.completions("goat-billed carp",
+results);<br>
+    test(results[0] == "");<br>
+    test(results[1] == "");<br>
+    test(results[2] == "");<br>
+    test(results[3] == "");<br>
+    test(results[4] == "");</p>
+<p><br>
+    // Test completions() on dictionary
+Autocompleter already made.<br>
+    dictionary.completions("bir", results);<br>
+    test(results[0] == "bird");<br>
+    test(results[1] == "birds");<br>
+    test(results[2] == "birmingham");<br>
+    test(results[3] == "birth");<br>
+    test(results[4] == "birthday");</p>
+<p>    dictionary.completions("hap", results);<br>
+    test(results[0] == "happen");<br>
+    test(results[1] == "happened");<br>
+    test(results[2] == "happening");<br>
+    test(results[3] == "happens");<br>
+    test(results[4] == "happiness");</p>
+<p>    dictionary.completions("program",
+results);<br>
+    test(results[0] == "program");<br>
+    test(results[1] == "programme");<br>
+    test(results[2] == "programmer");<br>
+    test(results[3] == "programmers");<br>
+    test(results[4] == "programmes");</p>
+<p>    dictionary.completions("foo", results);<br>
+    test(results[0] == "foo");<br>
+    test(results[1] == "food");<br>
+    test(results[2] == "foods");<br>
+    test(results[3] == "fool");<br>
+    test(results[4] == "foot");</p>
+<p><br>
+    // Test Autocompleter for completing 100000
+words<br>
+    for (int i = 0; i &lt; 100000; ++i)<br>
+       
+dictionary.completion_count(random_string(5));</p>
+<p>    for (int i = 0; i &lt; 100000; ++i)<br>
+       
+dictionary.completions(random_string(5), results);</p>
+<p><br>
+    cout &lt;&lt; "Assignment complete." &lt;&lt;
+endl;<br>
+}</p>
+<p>//END MAIN.CPP</p>
+<p><br>
+-----------------------------</p>
+<p><strong>IMPLETMENT THIS FILE...</strong></p>
+<p><strong>//AUTOCOMPLETER.CPP</strong></p>
+<p><strong>//END AUTOCOMPLETER.CPP</strong></p>
+</div>
+			
+		</div></h3> </body> </html> 

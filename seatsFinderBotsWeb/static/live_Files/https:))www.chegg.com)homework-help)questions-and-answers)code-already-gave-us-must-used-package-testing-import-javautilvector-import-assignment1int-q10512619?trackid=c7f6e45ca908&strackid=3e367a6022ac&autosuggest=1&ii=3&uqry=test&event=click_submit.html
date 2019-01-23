@@ -1,0 +1,502 @@
+ <!DOCTYPE html> <html lang="zh_cn"> <head> <meta charset="UTF-8"> </head> <body>  <h1>Question: </h1><h3><div class="ugc-base question-body-text">
+			<div class=""><p><img alt="CST 8284 Assignment 1 (due Feb 12, total of 65 marks) The goal of this lab is to create a sub-class in Java, and use inheritance, super, and override. I am giving you some code to start the assignment. You must create each of the following objects: Integer, Rational, and Complex, which must be added to the package assignment1, which already exists I have also created a class called Test, which is in the testing package. This class has a main method which has many lines of code which test the various functions that you will implement Your task is to write the Integer, Rational, and Complex classes so that the tests in the main method all pass. You should also write the JavaDoc comments for the three classes, and create the UML diagrams 1) Integer should be a class that has a single int variable. This class must inherit from Object, and have its own variable, you can not use the Integer class that is already included in the Java language 2) Rational should be a class that inherits from Integer, but has a second integer variable to represent the denominator. Rational numbers are a special kind of number that can be represented as a fraction, in the form a/ b. For example, 2.75 can be written as (275/ 100) or (11/4). The number pi 3.1415926535 is an irrational number, meaning that it can not be written as a fraction a b 3) A complex number is a number that contains both real and imaginary Rational components. The imaginary component, shown by letter i, represents V-1. For this assignment, Complex should extend Rational, and the inherited variables should represent the real component of the number. Complex should then have a new variable, of type Rational, to represent the imaginary component For all three classes, implement the following methods * Empty constructor, Default constructor, Copy constructor, equals ● clone toString add subtract multiply divide" src="https://d2vlcm61l7u1fs.cloudfront.net/media%2Ffa5%2Ffa5b5dd4-f7f0-4b3f-9c64-a61f1c97c060%2FphpupOMVk.png" style="height:957px;width:808px;"><img alt="" src="https://d2vlcm61l7u1fs.cloudfront.net/media%2F2e4%2F2e44f325-f52d-440e-aada-d2ec4ec4d014%2FphpiJgpSt.png" style="height:839px;width:773px;"><img alt="" src="https://d2vlcm61l7u1fs.cloudfront.net/media%2Fb87%2Fb875480e-ea1b-4503-b932-c7da1e857ce9%2FphpcrS0A5.png" style="height:602px;width:679px;"></p>
+<p>The code he already gave us is and must be used:</p>
+<p>package testing;</p>
+<p>import java.util.Vector;<br>
+import assignment1.Integer;<br>
+import assignment1.Rational;<br>
+import assignment1.Complex;</p>
+<p>public class Test {</p>
+<p>       static Vector&lt;String&gt;
+passed = new Vector&lt;&gt;();<br>
+       static Vector&lt;String&gt; failed
+= new Vector&lt;&gt;();</p>
+<p>       public static void main(String
+args[])<br>
+       {<br>
+           Integer i1 = new
+Integer(5);<br>
+           Integer i2 = new
+Integer(6);</p>
+<p>           Integer
+clone1 = i1.clone();</p>
+<p>           Test.test(i1
+== i1,            "Testing
+Integer identity");<br>
+           Test.test( i1 !=
+clone1,           "Testing
+Integer inequality");<br>
+          
+Test.test(i1.equals(clone1),     "Testing Integer
+equality");</p>
+<p>           Test.test(
+i1.add(5).getInt() == 10,        
+"Testing Integer add");<br>
+           Test.test(
+i1.subtract(3).getInt() == 2,     "Testing Integer
+subtract");<br>
+          
+Test.test(i1.multiply(4).getInt() == 20,    "Testing
+Integer multiply");<br>
+          
+Test.test(i1.divide(2).getInt() == 2,   
+    "Testing Integer divide");<br>
+          
+Test.test(i1.toString().equals("5"),   
+    "Testing Integer toString");<br>
+          
+i1.setInt(33);<br>
+          
+Test.test(i1.getInt() == 33,    "Testing Integer
+Set");</p>
+<p>           Rational r1 =
+new Rational();<br>
+           Rational r2 =
+new Rational(3, 4);   //r2 = 3 / 4<br>
+           Rational r3 =
+new Rational(6);       // r3 = 6 / 1</p>
+<p>           Test.test(r1
+== r1,           
+    "Testing Rational identity");<br>
+           Test.test( r1!=
+r1.clone(),          
+"Testing Rational inequality2");</p>
+<p>          
+r1.setInt(3);<br>
+          
+r1.setDenominator(4);<br>
+          
+Test.test(r1.equals(r2),       
+        "Testing Rational
+equality");<br>
+           Test.test(
+!r1.equals(i1),           
+    "Testing Rational equality2");<br>
+          
+Test.test(r1.add(r2).getInt() == 24,   
+    "Testing Rational add");<br>
+          
+Test.test(r1.add(r2).getDenominator() == 16,"Testing Rational
+add2");</p>
+<p>          
+r1.setDenominator(2);   //R1 is now 3/2<br>
+          
+r2.setInt(2);       //R2 is now 2/4</p>
+<p>          
+Test.test(r1.subtract(r2).getInt() == 8,   
+        "Testing Rational add3");
+//(3*4) - (2*2)<br>
+          
+Test.test(r1.subtract(r2).getDenominator() == 8,  
+"Testing Rational add4");<br>
+          
+Test.test(r1.multiply(r2).getInt() == 6,   
+        "Testing Rational
+multiply");<br>
+          
+Test.test(r1.multiply(r2).getDenominator() == 8,   
+"Testing Rational multiply2");<br>
+          
+Test.test(r1.divide(r2).getInt() == 12,  
+            "Testing
+Rational divide");<br>
+          
+Test.test(r1.divide(r2).getDenominator()== 4,   
+    "Testing Rational divide2");<br>
+          
+Test.test(r1.toString().equals("3/2"),   
+            "Testing
+Rational toString");<br>
+          
+Test.test(r2.toString().equals("2/4"),  
+            "Testing
+Rational toString2");</p>
+<p>           Complex c1 =
+new Complex();<br>
+           Complex c2 = new
+Complex(2, 4);       //Real part is 2,
+Imaginary is 4<br>
+           Complex result =
+null;</p>
+<p>           c1.setReal(
+new Rational(2) );<br>
+           c1.setImaginary(
+new Rational(4) );</p>
+<p>           Test.test(
+c1.clone() != c1,        "Testing Complex
+identity");<br>
+           Test.test( c1 ==
+c1,          
+    "Testing Complex identity2");<br>
+           Test.test(
+c1.equals(c2),          
+"Testing Complex equality");</p>
+<p>           result =
+c1.add(c2);<br>
+           Test.test(
+result.getReal().getInt() == 4,       
+    "Testing Complex add");<br>
+           Test.test(
+result.getReal().getDenominator() == 1,    "Testing
+Complex add2");</p>
+<p>           Test.test(
+result.getImaginary().getInt() == 8,    "Testing Complex
+add3");<br>
+           Test.test(
+result.getReal().getDenominator() == 1,    "Testing
+Complex add4");</p>
+<p>           result =
+c1.subtract(new Complex( 3, 3));<br>
+          
+Test.test(result.getReal().getInt() == -1,   
+        "Testing Complex
+subtract");<br>
+          
+Test.test(result.getImaginary().getInt() == 1,  
+    "Testing Complex subtract2");</p>
+<p>           c2.setReal(
+new Rational(3) );<br>
+           c2.setImaginary(
+new Rational(3) );       //c2 is now (3 +
+i3)<br>
+      <br>
+           result =
+c1.multiply(c2);<br>
+          
+Test.test(result.getReal().getInt() == -6,   
+        "Testing Complex
+multiply");<br>
+          
+Test.test(result.getImaginary().getInt() == 18,   
+"Testing Complex multiply2");</p>
+<p>           result =
+c1.divide(c2);<br>
+          
+Test.test(result.getReal().getInt() == 18,  
+            "Testing
+Complex divide");<br>
+          
+Test.test(result.getReal().getDenominator() == 18,  
+    "Testing Complex divide2");<br>
+          
+Test.test(result.getImaginary().getInt() == 6,  
+        "Testing Complex
+divide3");<br>
+          
+Test.test(result.getImaginary().getDenominator() == 18,  
+"Testing Complex divide4");</p>
+<p>          
+Test.test(c1.toString().equals("2/1 + i4/1"),   "Testing
+Complex toString");<br>
+          
+Test.test(c2.toString().equals("3/1 + i3/1"),   "Testing
+Complex toString2");</p>
+<p>          
+c1.setImaginary( new Rational(-4)); // c1 is now "2/1 - i4/1"<br>
+           String str =
+c1.toString();<br>
+          
+Test.test(str.equals("2/1 - i4/1"),   "Testing Complex
+toString3");</p>
+<p>          
+Test.printTestResults();<br>
+       }</p>
+<p>       public static void test(boolean
+result, String message)<br>
+       {<br>
+          
+if(passed.isEmpty() &amp;&amp; failed.isEmpty())<br>
+           {<br>
+          
+    System.out.println("Beginning tests:");<br>
+           }</p>
+<p>          
+System.out.println(message + ":" + result);<br>
+           if(result)<br>
+          
+    passed.add(message);<br>
+           else<br>
+          
+    failed.add(message);<br>
+       }</p>
+<p>       public static void
+printTestResults()<br>
+       {<br>
+          
+System.out.println("TEST RESULTS - Passed:");<br>
+           for(String test:
+passed)<br>
+           {<br>
+          
+    System.out.println("\t" + test);<br>
+           }<br>
+          
+if(passed.isEmpty())   System.out.println("None");</p>
+<p><br>
+          
+System.out.println("TEST RESULTS - Failed:");<br>
+           for(String test:
+failed)<br>
+           {<br>
+          
+    System.out.println("\t" + test);<br>
+           }<br>
+          
+if(failed.isEmpty())   System.out.println("None");</p>
+<p>          
+System.out.println("Summary:" + passed.size() + " passed, " +
+failed.size() + " failed, " + (passed.size() + failed.size()) + "
+total");<br>
+       }<br>
+   }</p>
+<p>package testing;</p>
+<p>import java.util.Vector;<br>
+import assignment1.Integer;<br>
+import assignment1.Rational;<br>
+import assignment1.Complex;</p>
+<p>public class Test {</p>
+<p>       static Vector&lt;String&gt;
+passed = new Vector&lt;&gt;();<br>
+       static Vector&lt;String&gt; failed
+= new Vector&lt;&gt;();</p>
+<p>       public static void main(String
+args[])<br>
+       {<br>
+           Integer i1 = new
+Integer(5);<br>
+           Integer i2 = new
+Integer(6);</p>
+<p>           Integer
+clone1 = i1.clone();</p>
+<p>           Test.test(i1
+== i1,            "Testing
+Integer identity");<br>
+           Test.test( i1 !=
+clone1,           "Testing
+Integer inequality");<br>
+          
+Test.test(i1.equals(clone1),     "Testing Integer
+equality");</p>
+<p>           Test.test(
+i1.add(5).getInt() == 10,        
+"Testing Integer add");<br>
+           Test.test(
+i1.subtract(3).getInt() == 2,     "Testing Integer
+subtract");<br>
+          
+Test.test(i1.multiply(4).getInt() == 20,    "Testing
+Integer multiply");<br>
+          
+Test.test(i1.divide(2).getInt() == 2,   
+    "Testing Integer divide");<br>
+          
+Test.test(i1.toString().equals("5"),   
+    "Testing Integer toString");<br>
+          
+i1.setInt(33);<br>
+          
+Test.test(i1.getInt() == 33,    "Testing Integer
+Set");</p>
+<p>           Rational r1 =
+new Rational();<br>
+           Rational r2 =
+new Rational(3, 4);   //r2 = 3 / 4<br>
+           Rational r3 =
+new Rational(6);       // r3 = 6 / 1</p>
+<p>           Test.test(r1
+== r1,           
+    "Testing Rational identity");<br>
+           Test.test( r1!=
+r1.clone(),          
+"Testing Rational inequality2");</p>
+<p>          
+r1.setInt(3);<br>
+          
+r1.setDenominator(4);<br>
+          
+Test.test(r1.equals(r2),       
+        "Testing Rational
+equality");<br>
+           Test.test(
+!r1.equals(i1),           
+    "Testing Rational equality2");<br>
+          
+Test.test(r1.add(r2).getInt() == 24,   
+    "Testing Rational add");<br>
+          
+Test.test(r1.add(r2).getDenominator() == 16,"Testing Rational
+add2");</p>
+<p>          
+r1.setDenominator(2);   //R1 is now 3/2<br>
+          
+r2.setInt(2);       //R2 is now 2/4</p>
+<p>          
+Test.test(r1.subtract(r2).getInt() == 8,   
+        "Testing Rational add3");
+//(3*4) - (2*2)<br>
+          
+Test.test(r1.subtract(r2).getDenominator() == 8,  
+"Testing Rational add4");<br>
+          
+Test.test(r1.multiply(r2).getInt() == 6,   
+        "Testing Rational
+multiply");<br>
+          
+Test.test(r1.multiply(r2).getDenominator() == 8,   
+"Testing Rational multiply2");<br>
+          
+Test.test(r1.divide(r2).getInt() == 12,  
+            "Testing
+Rational divide");<br>
+          
+Test.test(r1.divide(r2).getDenominator()== 4,   
+    "Testing Rational divide2");<br>
+          
+Test.test(r1.toString().equals("3/2"),   
+            "Testing
+Rational toString");<br>
+          
+Test.test(r2.toString().equals("2/4"),  
+            "Testing
+Rational toString2");</p>
+<p>           Complex c1 =
+new Complex();<br>
+           Complex c2 = new
+Complex(2, 4);       //Real part is 2,
+Imaginary is 4<br>
+           Complex result =
+null;</p>
+<p>           c1.setReal(
+new Rational(2) );<br>
+           c1.setImaginary(
+new Rational(4) );</p>
+<p>           Test.test(
+c1.clone() != c1,        "Testing Complex
+identity");<br>
+           Test.test( c1 ==
+c1,          
+    "Testing Complex identity2");<br>
+           Test.test(
+c1.equals(c2),          
+"Testing Complex equality");</p>
+<p>           result =
+c1.add(c2);<br>
+           Test.test(
+result.getReal().getInt() == 4,       
+    "Testing Complex add");<br>
+           Test.test(
+result.getReal().getDenominator() == 1,    "Testing
+Complex add2");</p>
+<p>           Test.test(
+result.getImaginary().getInt() == 8,    "Testing Complex
+add3");<br>
+           Test.test(
+result.getReal().getDenominator() == 1,    "Testing
+Complex add4");</p>
+<p>           result =
+c1.subtract(new Complex( 3, 3));<br>
+          
+Test.test(result.getReal().getInt() == -1,   
+        "Testing Complex
+subtract");<br>
+          
+Test.test(result.getImaginary().getInt() == 1,  
+    "Testing Complex subtract2");</p>
+<p>           c2.setReal(
+new Rational(3) );<br>
+           c2.setImaginary(
+new Rational(3) );       //c2 is now (3 +
+i3)<br>
+      <br>
+           result =
+c1.multiply(c2);<br>
+          
+Test.test(result.getReal().getInt() == -6,   
+        "Testing Complex
+multiply");<br>
+          
+Test.test(result.getImaginary().getInt() == 18,   
+"Testing Complex multiply2");</p>
+<p>           result =
+c1.divide(c2);<br>
+          
+Test.test(result.getReal().getInt() == 18,  
+            "Testing
+Complex divide");<br>
+          
+Test.test(result.getReal().getDenominator() == 18,  
+    "Testing Complex divide2");<br>
+          
+Test.test(result.getImaginary().getInt() == 6,  
+        "Testing Complex
+divide3");<br>
+          
+Test.test(result.getImaginary().getDenominator() == 18,  
+"Testing Complex divide4");</p>
+<p>          
+Test.test(c1.toString().equals("2/1 + i4/1"),   "Testing
+Complex toString");<br>
+          
+Test.test(c2.toString().equals("3/1 + i3/1"),   "Testing
+Complex toString2");</p>
+<p>          
+c1.setImaginary( new Rational(-4)); // c1 is now "2/1 - i4/1"<br>
+           String str =
+c1.toString();<br>
+          
+Test.test(str.equals("2/1 - i4/1"),   "Testing Complex
+toString3");</p>
+<p>          
+Test.printTestResults();<br>
+       }</p>
+<p>       public static void test(boolean
+result, String message)<br>
+       {<br>
+          
+if(passed.isEmpty() &amp;&amp; failed.isEmpty())<br>
+           {<br>
+          
+    System.out.println("Beginning tests:");<br>
+           }</p>
+<p>          
+System.out.println(message + ":" + result);<br>
+           if(result)<br>
+          
+    passed.add(message);<br>
+           else<br>
+          
+    failed.add(message);<br>
+       }</p>
+<p>       public static void
+printTestResults()<br>
+       {<br>
+          
+System.out.println("TEST RESULTS - Passed:");<br>
+           for(String test:
+passed)<br>
+           {<br>
+          
+    System.out.println("\t" + test);<br>
+           }<br>
+          
+if(passed.isEmpty())   System.out.println("None");</p>
+<p><br>
+          
+System.out.println("TEST RESULTS - Failed:");<br>
+           for(String test:
+failed)<br>
+           {<br>
+          
+    System.out.println("\t" + test);<br>
+           }<br>
+          
+if(failed.isEmpty())   System.out.println("None");</p>
+<p>          
+System.out.println("Summary:" + passed.size() + " passed, " +
+failed.size() + " failed, " + (passed.size() + failed.size()) + "
+total");<br>
+       }<br>
+   }</p>
+</div>
+			<span class="transcribed-text">Show transcribed image text</span> <span class="transcribed-image-text hidden">CST 8284 Assignment 1 (due Feb 12, total of 65 marks) The goal of this lab is to create a sub-class in Java, and use inheritance, super, and override. I am giving you some code to start the assignment. You must create each of the following objects: Integer, Rational, and Complex, which must be added to the package assignment1, which already exists I have also created a class called Test, which is in the testing package. This class has a main method which has many lines of code which test the various functions that you will implement Your task is to write the Integer, Rational, and Complex classes so that the tests in the main method all pass. You should also write the JavaDoc comments for the three classes, and create the UML diagrams 1) Integer should be a class that has a single int variable. This class must inherit from Object, and have its own variable, you can not use the Integer class that is already included in the Java language 2) Rational should be a class that inherits from Integer, but has a second integer variable to represent the denominator. Rational numbers are a special kind of number that can be represented as a fraction, in the form a/ b. For example, 2.75 can be written as (275/ 100) or (11/4). The number pi 3.1415926535 is an irrational number, meaning that it can not be written as a fraction a b 3) A complex number is a number that contains both real and imaginary Rational components. The imaginary component, shown by letter i, represents V-1. For this assignment, Complex should extend Rational, and the inherited variables should represent the real component of the number. Complex should then have a new variable, of type Rational, to represent the imaginary component For all three classes, implement the following methods * Empty constructor, Default constructor, Copy constructor, equals ● clone toString add subtract multiply divide </span>
+		</div></h3> </body> </html> 

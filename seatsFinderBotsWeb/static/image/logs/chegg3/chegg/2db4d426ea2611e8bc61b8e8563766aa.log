@@ -1,0 +1,75 @@
+2018-11-16 22:03:58 [scrapy.utils.log] INFO: Scrapy 1.5.1 started (bot: cheggviewer)
+2018-11-16 22:03:58 [scrapy.utils.log] INFO: Versions: lxml 4.2.4.0, libxml2 2.9.8, cssselect 1.0.3, parsel 1.5.0, w3lib 1.19.0, Twisted 18.7.0, Python 2.7.10 (default, Oct  6 2017, 22:29:07) - [GCC 4.2.1 Compatible Apple LLVM 9.0.0 (clang-900.0.31)], pyOpenSSL 18.0.0 (OpenSSL 1.1.0i  14 Aug 2018), cryptography 2.3.1, Platform Darwin-17.7.0-x86_64-i386-64bit
+2018-11-16 22:03:58 [scrapy.crawler] INFO: Overridden settings: {'NEWSPIDER_MODULE': 'cheggviewer.spiders', 'CONCURRENT_REQUESTS': 1, 'SPIDER_MODULES': ['cheggviewer.spiders'], 'CONCURRENT_REQUESTS_PER_IP': 1, 'BOT_NAME': 'cheggviewer', 'LOG_FILE': 'logs/chegg3/chegg/2db4d426ea2611e8bc61b8e8563766aa.log'}
+2018-11-16 22:03:58 [py.warnings] WARNING: /Library/Python/2.7/site-packages/scrapy_jsonrpc/webservice.py:4: ScrapyDeprecationWarning: Module `scrapy.log` has been deprecated, Scrapy now relies on the builtin Python library for logging. Read the updated logging entry in the documentation to learn more.
+  from scrapy import log, signals
+
+2018-11-16 22:03:58 [py.warnings] WARNING: /Library/Python/2.7/site-packages/scrapy_jsonrpc/serialize.py:8: ScrapyDeprecationWarning: Module `scrapy.spider` is deprecated, use `scrapy.spiders` instead
+  from scrapy.spider import Spider
+
+2018-11-16 22:03:58 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.logstats.LogStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.corestats.CoreStats',
+ 'scrapy_jsonrpc.webservice.WebService']
+2018-11-16 22:03:58 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['cheggviewer.JSMiddleware.PhantomJSMiddleware',
+ 'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2018-11-16 22:03:58 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2018-11-16 22:03:58 [scrapy.middleware] INFO: Enabled item pipelines:
+['cheggviewer.pipelines.CheggviewerPipeline']
+2018-11-16 22:03:58 [scrapy.core.engine] INFO: Spider opened
+2018-11-16 22:03:58 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2018-11-16 22:03:58 [py.warnings] WARNING: /Library/Python/2.7/site-packages/scrapy/spidermiddlewares/offsite.py:59: URLWarning: allowed_domains accepts only domains, not URLs. Ignoring URL entry http://www.chegg.com in allowed_domains.
+  warnings.warn("allowed_domains accepts only domains, not URLs. Ignoring URL entry %s in allowed_domains." % domain, URLWarning)
+
+2018-11-16 22:03:58 [scrapy.extensions.telnet] DEBUG: Telnet console listening on 127.0.0.1:6023
+2018-11-16 22:03:58 [py.warnings] WARNING: /Library/Python/2.7/site-packages/scrapy_jsonrpc/webservice.py:90: ScrapyDeprecationWarning: log.msg has been deprecated, create a python logger and log through it instead
+  level=log.DEBUG, host=h.host, port=h.port)
+
+2018-11-16 22:03:58 [scrapy.log] DEBUG: Web service listening on 127.0.0.1:6024
+2018-11-16 22:03:59 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.chegg.com/homework-help/questions-and-answers/one-functionalities-compiler-determine-variable-names-correct-variable-naming-convention-j-q14483123> (referer: None)
+2018-11-16 22:03:59 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.chegg.com/homework-help/questions-and-answers/one-functionalities-compiler-determine-variable-names-correct-variable-naming-convention-j-q14483123>
+{'content': u' <h1>Question: </h1><h3><div class="ugc-base question-body-text">\n\t\t\t<div class=""><p>One of functionalities of a compiler is to determine if variable\nnames are correct. Here is the variable naming convention of Java\nprogramming language:</p>\n<p>"Variable names are case-sensitive. A variable\'s name can be any\nlegal identifier \u2014 an unlimited-length sequence of Unicode letters\nand digits, beginning with a letter, thedollar sign "$", or the\nunderscore character "_". White space is not permitted.Subsequent\ncharacters may be letters, digits, dollar signs, or underscore\ncharacters."</p>\n<p>Also, you can assume that the input domain for this includes any\nlength string withcharacters that developers can type using regular\nwindows keyboard.</p>\n<p>Source:\nhttp://docs.oracle.com/javase/tutorial/java/nutsandbolts/variables.html</p>\n<p>Suppose you are using equivalent partitioning technique for\ntesting the variable name verification module of the Java\ncompiler.</p>\n<p>a) Identify equivalent partitions based on the above\ndescription</p>\n<p>b) Develop test cases in a tabular format given below based on\nyour equivalent partitionsabove.</p>\n<p>|Test case # | Partition Tested | Input(s) |Expected output\n|</p>\n</div>\n\t\t\t\n\t\t</div></h3><h1>Best Answer:</h1><div class="answer-given-body ugc-base">\n                    <p><img alt="" src="https://d2vlcm61l7u1fs.cloudfront.net/media%2F0e6%2F0e6ec02c-d770-444e-9cb7-c9fb5b3da2ae%2FphpTE2wK5.png"><img alt="" src="https://d2vlcm61l7u1fs.cloudfront.net/media%2F169%2F169be85c-23d2-4f99-abc4-39dca04acb5f%2FphpHHCZv0.png"></p>\n\n                    \n                </div>',
+ 'filename': 'https:))www.chegg.com)homework-help)questions-and-answers)one-functionalities-compiler-determine-variable-names-correct-variable-naming-convention-j-q14483123',
+ 'receiver': 'xhdp123@126.com',
+ 'url': 'https://www.chegg.com/homework-help/questions-and-answers/one-functionalities-compiler-determine-variable-names-correct-variable-naming-convention-j-q14483123'}
+2018-11-16 22:03:59 [scrapy.core.engine] INFO: Closing spider (finished)
+2018-11-16 22:03:59 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'downloader/request_bytes': 503,
+ 'downloader/request_count': 1,
+ 'downloader/request_method_count/GET': 1,
+ 'downloader/response_bytes': 21824,
+ 'downloader/response_count': 1,
+ 'downloader/response_status_count/200': 1,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2018, 11, 17, 5, 3, 59, 529633),
+ 'item_scraped_count': 1,
+ 'log_count/DEBUG': 4,
+ 'log_count/INFO': 7,
+ 'log_count/WARNING': 4,
+ 'memusage/max': 58523648,
+ 'memusage/startup': 58523648,
+ 'response_received_count': 1,
+ 'scheduler/dequeued': 1,
+ 'scheduler/dequeued/memory': 1,
+ 'scheduler/enqueued': 1,
+ 'scheduler/enqueued/memory': 1,
+ 'start_time': datetime.datetime(2018, 11, 17, 5, 3, 58, 159129)}
+2018-11-16 22:03:59 [scrapy.core.engine] INFO: Spider closed (finished)

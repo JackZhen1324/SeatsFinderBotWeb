@@ -1,0 +1,75 @@
+2018-12-14 12:55:53 [scrapy.utils.log] INFO: Scrapy 1.5.1 started (bot: cheggviewer)
+2018-12-14 12:55:53 [scrapy.utils.log] INFO: Versions: lxml 4.2.4.0, libxml2 2.9.8, cssselect 1.0.3, parsel 1.5.0, w3lib 1.19.0, Twisted 18.7.0, Python 2.7.10 (default, Oct  6 2017, 22:29:07) - [GCC 4.2.1 Compatible Apple LLVM 9.0.0 (clang-900.0.31)], pyOpenSSL 18.0.0 (OpenSSL 1.1.0i  14 Aug 2018), cryptography 2.3.1, Platform Darwin-17.7.0-x86_64-i386-64bit
+2018-12-14 12:55:53 [scrapy.crawler] INFO: Overridden settings: {'NEWSPIDER_MODULE': 'cheggviewer.spiders', 'CONCURRENT_REQUESTS': 1, 'SPIDER_MODULES': ['cheggviewer.spiders'], 'CONCURRENT_REQUESTS_PER_IP': 1, 'BOT_NAME': 'cheggviewer', 'LOG_FILE': 'logs/chegg3/chegg/4054718affda11e8a819b8e8563766aa.log'}
+2018-12-14 12:55:53 [py.warnings] WARNING: /Library/Python/2.7/site-packages/scrapy_jsonrpc/webservice.py:4: ScrapyDeprecationWarning: Module `scrapy.log` has been deprecated, Scrapy now relies on the builtin Python library for logging. Read the updated logging entry in the documentation to learn more.
+  from scrapy import log, signals
+
+2018-12-14 12:55:53 [py.warnings] WARNING: /Library/Python/2.7/site-packages/scrapy_jsonrpc/serialize.py:8: ScrapyDeprecationWarning: Module `scrapy.spider` is deprecated, use `scrapy.spiders` instead
+  from scrapy.spider import Spider
+
+2018-12-14 12:55:53 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.logstats.LogStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.corestats.CoreStats',
+ 'scrapy_jsonrpc.webservice.WebService']
+2018-12-14 12:55:53 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['cheggviewer.JSMiddleware.PhantomJSMiddleware',
+ 'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2018-12-14 12:55:53 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2018-12-14 12:55:53 [scrapy.middleware] INFO: Enabled item pipelines:
+['cheggviewer.pipelines.CheggviewerPipeline']
+2018-12-14 12:55:53 [scrapy.core.engine] INFO: Spider opened
+2018-12-14 12:55:53 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2018-12-14 12:55:53 [py.warnings] WARNING: /Library/Python/2.7/site-packages/scrapy/spidermiddlewares/offsite.py:59: URLWarning: allowed_domains accepts only domains, not URLs. Ignoring URL entry http://www.chegg.com in allowed_domains.
+  warnings.warn("allowed_domains accepts only domains, not URLs. Ignoring URL entry %s in allowed_domains." % domain, URLWarning)
+
+2018-12-14 12:55:53 [scrapy.extensions.telnet] DEBUG: Telnet console listening on 127.0.0.1:6023
+2018-12-14 12:55:53 [py.warnings] WARNING: /Library/Python/2.7/site-packages/scrapy_jsonrpc/webservice.py:90: ScrapyDeprecationWarning: log.msg has been deprecated, create a python logger and log through it instead
+  level=log.DEBUG, host=h.host, port=h.port)
+
+2018-12-14 12:55:53 [scrapy.log] DEBUG: Web service listening on 127.0.0.1:6024
+2018-12-14 12:55:54 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.chegg.com/homework-help/questions-and-answers/1-figure-right-shows-oxygen-consumption-following-addition-preparation-mitochondria-hydrox-q23731501> (referer: None)
+2018-12-14 12:55:54 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.chegg.com/homework-help/questions-and-answers/1-figure-right-shows-oxygen-consumption-following-addition-preparation-mitochondria-hydrox-q23731501>
+{'content': u' <h1>Question: </h1><h3><div class="ugc-base question-body-text">\n\t\t\t<div class=""><p><img alt="300 mitochondria 500 nmol ADP 200a) (o ADP all converted (c) to ATP 100 0 1 2 3 4 5 6 minutes after adding mitochondria" src="https://d2vlcm61l7u1fs.cloudfront.net/media%2F7ae%2F7aed049e-3b54-45ac-9e27-0f05d64b844d%2FphpNTXn7U.png" style="height:485px;width:455px;"></p>\n<p>1. The figure to the right shows oxygen</p>\n<p>consumption following addition of a</p>\n<p>preparation of mitochondria to</p>\n<p>\uf062-hydroxybutyrate dissolved in medium</p>\n<p>containing 70 mM sucrose, 220 mM</p>\n<p>mannitol, 2 mM HEPES buffer, 5 mM</p>\n<p>magnesium chloride, 5 mM potassium</p>\n<p>phosphate, 1 mM EDTA, and 0.1% bovine</p>\n<p>serum album, pH 7.4 and at 25\uf0b0C. Dissolved</p>\n<p>oxygen in the system is measured with an</p>\n<p>oxygen electrode.</p>\n<p>a. What sequence of reactions is initiated upon the addition of\nmitochondria to the system</p>\n<p>and results in the rapid consumption of dissolved oxygen as\nshown in (a) of the figure?</p>\n<p>b. What accounts for the slow rate of oxygen consumption\nobserved in (b) of the figure?</p>\n<p>c. Suggest events that lead to the rapid oxygen consumption upon\naddition of 500 nmol of</p>\n<p>ADP to the system (part (c) of the figure).</p>\n<p>d. What accounts for the slow rate of oxygen consumption\nobserved in (d) of the figure?</p>\n<p>e. In what form is oxygen consumed in parts (a) to (d) of the\nfigure?</p>\n<p>f. How many moles of ATP are synthesized per oxygen atom\nconsumed?</p>\n</div>\n\t\t\t<span class="transcribed-text">Show transcribed image text</span> <span class="transcribed-image-text hidden">300 mitochondria 500 nmol ADP 200a) (o ADP all converted (c) to ATP 100 0 1 2 3 4 5 6 minutes after adding mitochondria </span>\n\t\t</div></h3>',
+ 'filename': 'https:))www.chegg.com)homework-help)questions-and-answers)1-figure-right-shows-oxygen-consumption-following-addition-preparation-mitochondria-hydrox-q23731501',
+ 'receiver': 'xhdp123@126.com',
+ 'url': 'https://www.chegg.com/homework-help/questions-and-answers/1-figure-right-shows-oxygen-consumption-following-addition-preparation-mitochondria-hydrox-q23731501'}
+2018-12-14 12:55:54 [scrapy.core.engine] INFO: Closing spider (finished)
+2018-12-14 12:55:54 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'downloader/request_bytes': 503,
+ 'downloader/request_count': 1,
+ 'downloader/request_method_count/GET': 1,
+ 'downloader/response_bytes': 20274,
+ 'downloader/response_count': 1,
+ 'downloader/response_status_count/200': 1,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2018, 12, 14, 19, 55, 54, 346885),
+ 'item_scraped_count': 1,
+ 'log_count/DEBUG': 4,
+ 'log_count/INFO': 7,
+ 'log_count/WARNING': 4,
+ 'memusage/max': 56852480,
+ 'memusage/startup': 56852480,
+ 'response_received_count': 1,
+ 'scheduler/dequeued': 1,
+ 'scheduler/dequeued/memory': 1,
+ 'scheduler/enqueued': 1,
+ 'scheduler/enqueued/memory': 1,
+ 'start_time': datetime.datetime(2018, 12, 14, 19, 55, 53, 343813)}
+2018-12-14 12:55:54 [scrapy.core.engine] INFO: Spider closed (finished)

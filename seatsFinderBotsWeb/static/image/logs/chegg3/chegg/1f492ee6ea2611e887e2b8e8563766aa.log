@@ -1,0 +1,100 @@
+2018-11-16 22:03:33 [scrapy.utils.log] INFO: Scrapy 1.5.1 started (bot: cheggviewer)
+2018-11-16 22:03:33 [scrapy.utils.log] INFO: Versions: lxml 4.2.4.0, libxml2 2.9.8, cssselect 1.0.3, parsel 1.5.0, w3lib 1.19.0, Twisted 18.7.0, Python 2.7.10 (default, Oct  6 2017, 22:29:07) - [GCC 4.2.1 Compatible Apple LLVM 9.0.0 (clang-900.0.31)], pyOpenSSL 18.0.0 (OpenSSL 1.1.0i  14 Aug 2018), cryptography 2.3.1, Platform Darwin-17.7.0-x86_64-i386-64bit
+2018-11-16 22:03:33 [scrapy.crawler] INFO: Overridden settings: {'NEWSPIDER_MODULE': 'cheggviewer.spiders', 'CONCURRENT_REQUESTS': 1, 'SPIDER_MODULES': ['cheggviewer.spiders'], 'CONCURRENT_REQUESTS_PER_IP': 1, 'BOT_NAME': 'cheggviewer', 'LOG_FILE': 'logs/chegg3/chegg/1f492ee6ea2611e887e2b8e8563766aa.log'}
+2018-11-16 22:03:33 [py.warnings] WARNING: /Library/Python/2.7/site-packages/scrapy_jsonrpc/webservice.py:4: ScrapyDeprecationWarning: Module `scrapy.log` has been deprecated, Scrapy now relies on the builtin Python library for logging. Read the updated logging entry in the documentation to learn more.
+  from scrapy import log, signals
+
+2018-11-16 22:03:33 [py.warnings] WARNING: /Library/Python/2.7/site-packages/scrapy_jsonrpc/serialize.py:8: ScrapyDeprecationWarning: Module `scrapy.spider` is deprecated, use `scrapy.spiders` instead
+  from scrapy.spider import Spider
+
+2018-11-16 22:03:33 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.logstats.LogStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.corestats.CoreStats',
+ 'scrapy_jsonrpc.webservice.WebService']
+2018-11-16 22:03:33 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['cheggviewer.JSMiddleware.PhantomJSMiddleware',
+ 'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2018-11-16 22:03:33 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2018-11-16 22:03:33 [scrapy.middleware] INFO: Enabled item pipelines:
+['cheggviewer.pipelines.CheggviewerPipeline']
+2018-11-16 22:03:33 [scrapy.core.engine] INFO: Spider opened
+2018-11-16 22:03:33 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2018-11-16 22:03:33 [py.warnings] WARNING: /Library/Python/2.7/site-packages/scrapy/spidermiddlewares/offsite.py:59: URLWarning: allowed_domains accepts only domains, not URLs. Ignoring URL entry http://www.chegg.com in allowed_domains.
+  warnings.warn("allowed_domains accepts only domains, not URLs. Ignoring URL entry %s in allowed_domains." % domain, URLWarning)
+
+2018-11-16 22:03:33 [scrapy.extensions.telnet] DEBUG: Telnet console listening on 127.0.0.1:6023
+2018-11-16 22:03:33 [py.warnings] WARNING: /Library/Python/2.7/site-packages/scrapy_jsonrpc/webservice.py:90: ScrapyDeprecationWarning: log.msg has been deprecated, create a python logger and log through it instead
+  level=log.DEBUG, host=h.host, port=h.port)
+
+2018-11-16 22:03:33 [scrapy.log] DEBUG: Web service listening on 127.0.0.1:6024
+2018-11-16 22:03:34 [selenium.webdriver.remote.remote_connection] DEBUG: POST http://127.0.0.1:64189/session {"capabilities": {"alwaysMatch": {"goog:chromeOptions": {"args": ["lang=zh_CN.UTF-8", "--no-sandbox", "--headless", "user-agent=\"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.82 Safari/537.36\""], "extensions": []}, "browserName": "chrome", "platformName": "any"}, "firstMatch": [{}]}, "desiredCapabilities": {"goog:chromeOptions": {"args": ["lang=zh_CN.UTF-8", "--no-sandbox", "--headless", "user-agent=\"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.82 Safari/537.36\""], "extensions": []}, "platform": "ANY", "browserName": "chrome", "version": ""}}
+2018-11-16 22:03:34 [urllib3.connectionpool] DEBUG: Starting new HTTP connection (1): 127.0.0.1:64189
+2018-11-16 22:03:34 [urllib3.connectionpool] DEBUG: http://127.0.0.1:64189 "POST /session HTTP/1.1" 200 904
+2018-11-16 22:03:34 [selenium.webdriver.remote.remote_connection] DEBUG: Finished Request
+2018-11-16 22:03:34 [selenium.webdriver.remote.remote_connection] DEBUG: POST http://127.0.0.1:64189/session/87f7ff621d6d18ff22b887b6bd885071/window/current/size {"width": 2560, "windowHandle": "current", "sessionId": "87f7ff621d6d18ff22b887b6bd885071", "height": 8000}
+2018-11-16 22:03:34 [urllib3.connectionpool] DEBUG: http://127.0.0.1:64189 "POST /session/87f7ff621d6d18ff22b887b6bd885071/window/current/size HTTP/1.1" 200 72
+2018-11-16 22:03:34 [selenium.webdriver.remote.remote_connection] DEBUG: Finished Request
+2018-11-16 22:03:34 [selenium.webdriver.remote.remote_connection] DEBUG: POST http://127.0.0.1:64189/session/87f7ff621d6d18ff22b887b6bd885071/url {"url": "https://www.chegg.com/homework-help/Marketing-13th-edition-chapter-ACC-problem-1CC-solution-9780134149530", "sessionId": "87f7ff621d6d18ff22b887b6bd885071"}
+2018-11-16 22:03:40 [urllib3.connectionpool] DEBUG: http://127.0.0.1:64189 "POST /session/87f7ff621d6d18ff22b887b6bd885071/url HTTP/1.1" 200 72
+2018-11-16 22:03:40 [selenium.webdriver.remote.remote_connection] DEBUG: Finished Request
+2018-11-16 22:03:40 [selenium.webdriver.remote.remote_connection] DEBUG: DELETE http://127.0.0.1:64189/session/87f7ff621d6d18ff22b887b6bd885071/cookie {"sessionId": "87f7ff621d6d18ff22b887b6bd885071"}
+2018-11-16 22:03:40 [urllib3.connectionpool] DEBUG: http://127.0.0.1:64189 "DELETE /session/87f7ff621d6d18ff22b887b6bd885071/cookie HTTP/1.1" 200 72
+2018-11-16 22:03:40 [selenium.webdriver.remote.remote_connection] DEBUG: Finished Request
+2018-11-16 22:03:40 [selenium.webdriver.remote.remote_connection] DEBUG: POST http://127.0.0.1:64189/session/87f7ff621d6d18ff22b887b6bd885071/cookie {"sessionId": "87f7ff621d6d18ff22b887b6bd885071", "cookie": {"domain": ".chegg.com", "name": "PHPSESSID", "value": "90qe6f6egrnfij16jbi11jdrs4", "path": "/", "httpOnly": "false", "secure": "false"}}
+2018-11-16 22:03:40 [urllib3.connectionpool] DEBUG: http://127.0.0.1:64189 "POST /session/87f7ff621d6d18ff22b887b6bd885071/cookie HTTP/1.1" 200 72
+2018-11-16 22:03:40 [selenium.webdriver.remote.remote_connection] DEBUG: Finished Request
+2018-11-16 22:03:40 [selenium.webdriver.remote.remote_connection] DEBUG: POST http://127.0.0.1:64189/session/87f7ff621d6d18ff22b887b6bd885071/cookie {"sessionId": "87f7ff621d6d18ff22b887b6bd885071", "cookie": {"domain": ".chegg.com", "name": "SU", "value": "Qgi0Z4ESDnor1-kic3-w2U46ntsLs-82dcw0IoPNEn-RZggduBiLdbyRtoEgkvvFPKiQ6sG_e3r7EcHXqO6KhKoIinGZWy9FDTXwHXijkq-ebubmb2LhRx5gf-ezYdYE", "path": "/", "httpOnly": "false", "secure": "false"}}
+2018-11-16 22:03:40 [urllib3.connectionpool] DEBUG: http://127.0.0.1:64189 "POST /session/87f7ff621d6d18ff22b887b6bd885071/cookie HTTP/1.1" 200 72
+2018-11-16 22:03:40 [selenium.webdriver.remote.remote_connection] DEBUG: Finished Request
+2018-11-16 22:03:40 [selenium.webdriver.remote.remote_connection] DEBUG: POST http://127.0.0.1:64189/session/87f7ff621d6d18ff22b887b6bd885071/refresh {"sessionId": "87f7ff621d6d18ff22b887b6bd885071"}
+2018-11-16 22:03:40 [urllib3.connectionpool] DEBUG: http://127.0.0.1:64189 "POST /session/87f7ff621d6d18ff22b887b6bd885071/refresh HTTP/1.1" 200 72
+2018-11-16 22:03:40 [selenium.webdriver.remote.remote_connection] DEBUG: Finished Request
+2018-11-16 22:03:50 [selenium.webdriver.remote.remote_connection] DEBUG: GET http://127.0.0.1:64189/session/87f7ff621d6d18ff22b887b6bd885071/source {"sessionId": "87f7ff621d6d18ff22b887b6bd885071"}
+2018-11-16 22:03:50 [urllib3.connectionpool] DEBUG: http://127.0.0.1:64189 "GET /session/87f7ff621d6d18ff22b887b6bd885071/source HTTP/1.1" 200 200237
+2018-11-16 22:03:50 [selenium.webdriver.remote.remote_connection] DEBUG: Finished Request
+2018-11-16 22:03:50 [selenium.webdriver.remote.remote_connection] DEBUG: DELETE http://127.0.0.1:64189/session/87f7ff621d6d18ff22b887b6bd885071 {"sessionId": "87f7ff621d6d18ff22b887b6bd885071"}
+2018-11-16 22:03:50 [urllib3.connectionpool] DEBUG: http://127.0.0.1:64189 "DELETE /session/87f7ff621d6d18ff22b887b6bd885071 HTTP/1.1" 200 72
+2018-11-16 22:03:50 [selenium.webdriver.remote.remote_connection] DEBUG: Finished Request
+2018-11-16 22:03:50 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.chegg.com/homework-help/Marketing-13th-edition-chapter-ACC-problem-1CC-solution-9780134149530> (referer: None)
+2018-11-16 22:03:50 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.chegg.com/homework-help/Marketing-13th-edition-chapter-ACC-problem-1CC-solution-9780134149530>
+{'content': u' <h1> Textbook Name:<span class="book-title-name">Marketing</span></h1><h1> Chapter:<h3 class="title">Chapter ACC, Problem 1CC</h3></h1><h1>Step 0</h1><div class="answer"> <p> <b>Facts:</b> </p> <p>The company F was started in the year 1971. It provides delivery services beyond national boundaries to its customers. It focuses on the best experience for customers with the modifications in strategies. It has gained the status of overnight shipping business across the globe. It has grown and has become a global giant.</p> </div><h1>Step 1</h1><div class="answer"> <p> </p> <p>1.</p> <p> <b>Needs</b> refers to those requirements which are basic and essential for the survival of the human being rather than desirable. The <b>needs </b>that is demonstrated by the customer of the company F is need of self-expression as well as the wish to be served in such a manner that makes her or her feel that belong to some social class.</p> </div><h1>Step 2</h1><div class="answer"> <p> <b>Wants</b> refers the desire or the needs which are unfulfilled. These are temporary in nature and changes regularly. Wants are generally directed by our surroundings towards accomplishing few needs. </p> <p>The customers of the company F demonstrate wish to have urgently required goods and services and material that are required for very short notices.</p> </div><h1>Step 3</h1><div class="answer"> <p> <b>Demands</b> refer to the peremptory and an insistent request. It arises when the customer is able to sacrifice some amount of money in order to be satisfied with some need.</p> <p>The customer of the company F include the demand to be provided with services of export or import services, tracking packages.</p> </div><h1>Step 4</h1><div class="answer"> <p>2. </p> <p>The company F deals with the business of transportation and e business. And due to this, the provision of customer value in terms of cargo and courier services for the wide range of its customers is tasked with the company F. Around 220 countries are covered by the company thus serving the customers of these countries. The company F provide services to customers by means of air, road, seas and other.</p> </div><h1>Step 5</h1><div class="answer"> <p> <b>The company F engages its customers </b>through different forms of media such as social sites. They also run magazines and paper ads. They brand their trucks as well. Commercials are run by them showing that they are efficient and fast at delivering the packages.</p> </div><h1>Step 6</h1><div class="answer"> <p>3. </p> <p>The company F is recognized for delivering excellent service to its customers and is able to meet the needs and wants of its each customer. The request of the customers are herd and company act as per the request of its customer. The customers are given enough attention by the attendants of the company. The attendants of the company handle different problems of the customers and provide better service to them. Its inventory management and tracking systems are top notches that provide real-time tracking of the delivery. It meets the expectations of its customers.</p> </div><h1>Step 7</h1><div class="answer"> <p> <b>The outcome of this process is as follows:</b> </p> <p>1. It increases the levels of profit as a result of increased sales.</p> <p>2. Satisfaction to the customers which leads to the increase in the goodwill of the company.</p> <p>3. The level of services administered are excelled by the employees to the customers. </p> <p>4. The brand of the company is recognized that attract more customers.</p> </div><h1>Step 8</h1><div class="answer"> <p>4. </p> <p> <b>Marketing management orientations:</b> </p> <p>It refers to the different concepts of marketing which focus on the different techniques to produce, create, and market products to the customers. The management lays more emphasis on designing strategies which will help in building a profitable relationship with the target customers. </p> </div><h1>Step 9</h1><div class="answer"> <p> <b>There are five orientations of marketing management</b>. <b>They are as follows:</b></p> <p> <b>Production concept: </b>This concept basically focuses on producing, and not much effort is spent on the customer service. The company mainly tries to improve distribution and the production efficiency.</p> <p> <b>Product concept: </b>This concept focuses on making the product better, nicer and cheaper but it is not based on the needs of the customers. It begins with the product and then sold to the customers.</p> </div><h1>Step 10</h1><div class="answer"> <p> <b>Selling concept</b>: This concept focuses on the sale of products to the customers. It does not give much importance to who might the customer be or the reason behind the need of that product.</p> <p> <b> </b></p></div><h1>Step 11</h1><div class="answer">Marketing concept: It is a philosophy in which achieving organizational goals depend upon understanding the customer wants and the needs of the target market and delivering the desired satisfaction better than the competitors do.<p></p> </div><h1>Step 12</h1><div class="answer"> <p> <b>Societal marketing: </b>it is a concept which focuses on the present wants of the customers and at the same time, it also lays emphasis on the present and future needs of the society. Thus, it tries to achieve the satisfaction in the long-term interest of the society.</p> </div><h1>Step 13</h1><div class="answer"> <p> <b>Out of five marketing management orientations, the marketing concept and product concept best applies to the company F. </b> </p> <p> <b>In marketing concept</b>, the customer focus and values are the paths to higher sales and profits. <b>It is a customer-centered sense-and-respond philosophy rather than product centered</b>. The motto is to find the right product for the potential customers. </p> <p>The company F utilizes the concept of marketing when the major processes of the company are restructured to reduce the resources and take taken in order to enhance the provision of services.</p> </div><h1>Step 14</h1><div class="answer"> <p> <b>Product concept </b>is a concept that<b> </b>focuses on making the product better, nicer and cheaper but it is not based on the needs of the customers. The company F implemented techniques that provide the better quality of the products.</p> </div><h1>Step 15</h1><div class="answer"> </div><h1>Step 16</h1><div class="answer"> <p>5. </p> <p>With increased competition today, the company F can continue to be competitive by<b> focusing on the customer\u2019s needs</b> with a vast logistical network. It can also take help of the social media and remain competitive. </p> <p>Another way to be competitive is to <b>focus on the technological advancements</b>. The development of technology is an ongoing process and it can help the company F to become cost-effective and more efficient.</p> <p>One of the way to remain competitive is by way of establishing such brands that stands out in the market. The company F need to be unique and come up with some new and innovative products that forces customers to stay loyal to the company. </p></div>',
+ 'filename': 'https:))www.chegg.com)homework-help)Marketing-13th-edition-chapter-ACC-problem-1CC-solution-9780134149530',
+ 'receiver': 'xhdp123@126.com',
+ 'url': 'https://www.chegg.com/homework-help/Marketing-13th-edition-chapter-ACC-problem-1CC-solution-9780134149530'}
+2018-11-16 22:03:50 [scrapy.core.engine] INFO: Closing spider (finished)
+2018-11-16 22:03:50 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'downloader/response_bytes': 180377,
+ 'downloader/response_count': 1,
+ 'downloader/response_status_count/200': 1,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2018, 11, 17, 5, 3, 50, 868186),
+ 'item_scraped_count': 1,
+ 'log_count/DEBUG': 32,
+ 'log_count/INFO': 7,
+ 'log_count/WARNING': 4,
+ 'memusage/max': 58724352,
+ 'memusage/startup': 58724352,
+ 'response_received_count': 1,
+ 'scheduler/dequeued': 1,
+ 'scheduler/dequeued/memory': 1,
+ 'scheduler/enqueued': 1,
+ 'scheduler/enqueued/memory': 1,
+ 'start_time': datetime.datetime(2018, 11, 17, 5, 3, 33, 139889)}
+2018-11-16 22:03:50 [scrapy.core.engine] INFO: Spider closed (finished)

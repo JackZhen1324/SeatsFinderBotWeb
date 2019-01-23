@@ -1,0 +1,581 @@
+{% load static from staticfiles %}
+<!doctype html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=0.68",maximum-scale=0.5,user-scalable=yes>
+	<title>signin</title>
+	<link rel="stylesheet" type="text/css" href="frontend/node_modules/bootstrap/dist/css/bootstrap.min.css">
+	
+
+	  <style>
+
+	  	  #msg {
+      width: 100%;
+      line-height: 40px;
+      font-size: 14px;
+      text-align: center;
+    }
+	  </style>
+		<style>
+    * {
+      margin: 0; padding: 0;
+    }
+
+#nav {
+
+            margin: 0px auto;
+
+            height: 40px;
+
+
+
+          }
+
+    #nav ul {
+
+        list-style: none;
+
+        margin-left: 50px;
+				position:fixed;
+
+        }
+
+    #nav li {
+
+        display: inline;
+
+        }
+
+    #nav a {
+
+        line-height: 40px;
+
+        color: #fff;
+
+        text-decoration: none;
+
+        padding: 20px 20px;
+
+        }
+
+    #container {
+      overflow: hidden;
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+    }
+
+
+
+
+    #video_controls {
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, 0);
+    }
+
+
+
+    @media (max-width: 768px) {
+    	#background_video {
+        display: none;
+      }
+      #pass_reset_model{
+      top:45px;
+      }
+
+
+    }
+     @media (min-width: 768px) {
+
+ 	#background_video {
+      position: absolute;
+
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+
+      object-fit: cover;
+      height: 100%; width: 100%;
+    }}
+
+    /* Demo page specific styles */
+
+    body {
+      text-align: center;
+      font-family: 'proxima-nova', Helvetica;
+     	-webkit-overflow-scrolling: touch;
+
+    }
+
+    #container {
+      height: 100%;
+    }
+	@media only screen and (max-width:768px ) {
+		 #overlay {
+      position: absolute;
+      height: 121.2%;
+      top: 0; right: 0; left: 0; bottom: 0;
+      background: rgba(0,0,0,0.5);
+    }
+     html, body {
+      width: 100%;
+      height: 110%;
+      overflow: hidden;
+
+    }
+	}
+	@media only screen and (min-width:768px ) {
+		 #overlay {
+		 position: absolute;
+      height: 100%;
+      top: 0; right: 0; left: 0; bottom: 0;
+      background: rgba(0,0,0,0.5);
+		}
+		 html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+
+    }
+	}
+
+
+    #main_content {
+      z-index: 2;
+      position: relative;
+      display: inline-block;
+
+      /* Vertical center */
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    #main_content h1 {
+      text-transform: uppercase;
+      font-weight: 600;
+      font-family: 'proxima-nova-condensed', Helvetica;
+      color: #fff;
+      font-size: 35px;
+    }
+
+    #main_content .sub_head {
+      color: rgba(255,255,255,0.5);
+      font-size: 18px;
+    }
+
+    #main_content .info {
+      color: rgba(255,255,255,0.5);
+      font-size: 12px;
+      margin-top: 10px;
+    }
+
+    #links {
+      margin-top: 50px;
+    }
+
+    #links a {
+      border: 2px solid rgba(255,255,255,0.20);
+      border-radius: 61px;
+      font-size: 12px;
+      color: #FFFFFF;
+      letter-spacing: 1px;
+      text-decoration: none;
+      text-transform: uppercase;
+      padding: 10px 25px;
+      display: inline-block;
+      margin-right: 15px;
+    }
+    @media only screen and (max-width:768px ) {
+    	#foots
+    {
+    	 position: fixed;
+      bottom: 0px; left: 0; right: 0;
+    }
+    #video_cover
+    {
+    	 position: absolute;
+
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+
+      object-fit: cover;
+      height:142%; width: 100%;
+       background: url({%static 'image/video_cover.jpeg'%}) no-repeat;
+       background-size: cover;
+    }
+    }
+    @media only screen and (min-width: 768px) {
+    	#foots
+    {
+    	 position: fixed;
+      bottom: 0px; left: 0; right: 0;
+
+    }
+    #video_cover
+    {
+    	 position: absolute;
+
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+
+      object-fit: cover;
+      height:100%; width: 100%;
+       background: url({%static 'image/video_cover.jpeg'%}) no-repeat;
+       background-size: cover;
+    }
+    }
+
+
+    #footer {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      width:100%;height:100px;
+
+    }
+    .foot
+    {
+    	 position: fixed;
+      bottom: 0; left: 0; right: 0;
+
+    }
+    #footer  {
+
+      text-decoration: none;
+
+      font-size: 12px;
+    }
+    #footer a:first-child {
+      float: left;
+    }
+    #footer a:last-child {
+      float: right;
+
+    }
+	#logout {
+
+	background: rgba(0, 0, 0, 0);
+	border: 0px;
+	color:#f8f9fa;
+
+	}
+	#account{
+	position: absolute;
+	right:10px;
+	top: 5px;
+	background: rgba(0, 0, 0, 0);
+	border: 0px;
+	color:#f8f9fa;
+	}
+
+
+
+  </style>
+</head>
+<body>
+	<script type="application/javascript">
+		function regist()
+			{
+				username=$("#username").val();
+					user_email = $("#user_mail").val();
+					user_password = $("#userpass_word").val();
+					 var data = { "username":username,"user_email":user_email,"user_password":user_password};
+					if(username == ""||user_email==""||user_password=="")
+					{
+
+						$("#status").text( "输入为空！")
+						 $("#status").css("color","red");
+
+					}
+					else
+					{
+						$("#status").css("color","green");
+						$("#status").text( "请求中...")
+
+
+						var targetUrl = $("#resgist_form_data").attr("action");
+				   var data = data
+				    $.ajax({
+				     type:'post',
+				     url:targetUrl,
+				     cache: false,
+				     data:data,
+				     dataType:'json',
+				     statusCode:
+				     {
+				      200: function() {
+		         		$("#status").text( "注册成功！")
+		         		$("#status").css("color","green");
+		     			},
+		     		  403: function()
+		     		  {
+		     		  $("#status").text( "注册失败！")
+		     		  $("#status").css("color","red");
+		     		  },
+		     		  500: function()
+		     		  {
+		     		  $("#status").text( "服务器异常！")
+		     		  $("#status").css("color","red");
+		     		  },
+							201: function()
+							{
+								$("#status").text( "账号已存在！")
+								$("#status").css("color","red");
+							}
+				     }
+
+
+				    })
+					}
+
+			}
+		</script>
+	<div id="video_cover"></div>
+
+	<div class="jq22-container" style="padding-top:50px;">
+
+		<div class="container">
+
+
+		<video id="background_video" src="{%static 'image/night.webm'%}"   loop muted ></video>
+
+		<div id="overlay"></div>
+
+		<div class="row" >
+			<div class="col-xl-2">
+				</div>
+			<div class="col-xl-8">
+		<div class="login-wrap">
+			<div class="row" style="padding-top:50px;padding-bottom: 10px;">
+			<div class="nav-header header col-xl-12" style="margin-left: 0px; padding-left: 0px;">
+			<a class="brand " style="font-size: 250%;color: orangered;margin-left: 0px; ">CheggViewer</a>
+			</div>
+
+			</div>
+			<div class="login-html">
+				<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">登录</label>
+				<input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">注册</label>
+
+				<div class="login-form">
+					<form action="/homepage/" id="unlock"   method="post">
+						{% csrf_token %}
+					<div class="sign-in-htm">
+						<div class="group">
+							<label for="user" class="label">邮箱</label>
+							<input name="email" id="email"  type="text" class="input">
+						</div>
+						<div class="group">
+							<label for="pass" class="label">密码</label>
+							<input name="pass" id="url" type="password" class="input" data-type="password">
+						</div>
+
+						<div class="group">
+							<input id="check" type="checkbox" class="check" checked>
+							<label for="check"><span class="icon"></span> 保持登录</label>
+						</div>
+						<div class="group">
+							<input type="submit" name="live" id="live" class="btn btn-primary button" value="登录" >
+							<label id="status2" style="padding-top: 40px;">{{messg}}</label>
+						</div>
+						<div class="hr" style="margin: 5px 0 40px 0;"></div>
+						<div class="foot-lnk">
+							<button type="button" class="btn btn-outline-light" data-toggle="modal" data-target="#pass_reset_model" >忘记密码？</button>
+						</div>
+					</div>
+					</form>
+					<form id="resgist_form_data" action="/postsignup/" method="post">
+					<div class="sign-up-htm">
+						<div class="group">
+							<label for="user" class="label">用户名</label>
+							<input name="username" id="username" type="text" class="input">
+						</div>
+						<div class="group">
+							<label for="pass" class="label">密码</label>
+							<input name="user_password" id="user_password" type="password" class="input" data-type="password">
+						</div>
+
+						<div class="group">
+							<label for="pass" class="label">邮箱地址</label>
+							<input name="user_email" id="user_email" type="email" class="input">
+						</div>
+						<div class="group" style="padding-top: 20px;">
+							<input type="submit" class="btn btn-primary button"  onclick="regist()" value="注册">
+							<label id="status" style="padding-top: 40px;">{{e}}</label>
+						</div>
+						<div class="hr" style="padding-bottom: 0px; padding-top: 0px;margin: 5px 0 40px 0;"></div>
+						<div class="foot-lnk">
+							<label for="tab-1">已经成员?</a>
+						</div>
+					</div>
+					</form>
+
+					</div>
+					</div>
+					</div>
+					</div>
+					<div class="col-xl-2">
+						<div>
+
+			</div>
+		</div>
+	</div>
+	<div  >
+
+
+
+					<ul class="col-sm-12 foot" id="nav">
+
+						<li >
+					<a title="Policy Policy"style="color: #D1ECF1;font-size: 12px;" href="/policy/"><span>Privacy Policy</span></a>
+						</li>
+						<li >
+					<a title="Policy Policy"style="color: #D1ECF1;font-size: 12px;" href="#"><span>©2018 CheggViewer版权所有</span></a>
+						</li>
+
+
+						</ul>
+
+				</div>
+	<script type="text/javascript" src="{%static 'js/bideo.js'%}"></script>
+	<script type="text/javascript" src="{%static 'js/main.js'%}"></script>
+	<script type="text/javascript" src="{%static 'js/jigsaw.js'%}"></script>
+
+<script>
+
+	var flag=false;
+	function sub(){
+		var name=document.getElementById('username').value;
+		var pass=document.getElementById('password').value;
+		var cname="admin";
+		var cpass="123";
+		if(name==cname && pass==cpass && flag==true){
+		alert("登录成功!")
+			//window.location.href="#";
+		}else{
+			if(flag==false){
+				alert("验证失败!")
+				return;
+			}
+			alert("用户名或密码错误!")
+		}
+			}
+ 	 jigsaw.init(document.getElementById('captcha'), function () {
+  	 flag=true;
+    document.getElementById('msg').innerHTML = '登录成功！'
+  })
+</script>
+<script type="text/javascript">
+
+
+function exit()
+{
+$("#issue").val("");
+$("#issueUrl").val("");
+$("#status").text( "")
+}
+
+function add_info()
+    {
+			resetmail=$("#resetemail").val();
+			var data = { "resetemail":resetmail};
+			if(resetmail == "")
+			{
+
+				$("#status").text( "输入为空！")
+				 $("#status").css("color","red");
+
+			}
+			else
+			{
+
+				$("#status").text( "提交中。。。")
+
+
+				var targetUrl = $("#form_data").attr("action");
+		   var data = data;
+		    $.ajax({
+		     type:'post',
+		     url:targetUrl,
+		     cache: false,
+		     data:data,
+		     dataType:'json',
+		     statusCode:
+		     {
+		      200: function() {
+         		$("#status").text( "成功！")
+         		$("#status").css("color","green");
+						$("#myModalLabel").text("我们已经给您发了一封包含密码重置链接的邮件，请注意查收！");
+						$('#pass_reset_model').modal('toggle');
+						$('#success').modal('toggle');
+     			},
+     		  201: function()
+     		  {
+     		  $("#status").text( "邮件不存在！")
+     		  $("#status").css("color","red");
+					$("#myModalLabel").text("邮件不存在！");
+					$('#pass_reset_model').modal('toggle');
+					$('#success').modal('toggle');
+     		  },
+     		  500: function()
+     		  {
+     		  $("#status").text( "服务器异常！")
+     		  $("#status").css("color","red");
+     		  }
+		     }
+
+
+		    })
+			}
+
+		}
+	</script>
+<div class="modal fade" id="pass_reset_model" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+				<div class="modal-content" style="background: rgb(255,255,255,0.9);">
+						<div class="modal-header">
+
+								<h4 class="modal-title" id="myModaltitle">
+										密码重置
+								</h4>
+								<h8 type="value" color="red" name="status" id="status" value="tes" > </h8>
+						</div>
+						<form id="form_data"action="/reset_pass/">
+						<div class="modal-body">
+							 <div class="group">
+							 	<label for="user" class="label">请输入注册时所用email</label>
+							 	<input id="resetemail" name="resetemail"  type="text" class="input">
+							 </div>
+
+						</div>
+
+						<div class="modal-footer" text-align: center;">
+								<input type="button" style="background: rgb(1,1,1,0); text-align: center;" class="button" value="重置密码" onClick="add_info()">
+
+
+						</div>
+						</form>
+				</div><!-- /.modal-content -->
+		</div><!-- /.modal -->
+</div>
+<div class="modal fade" id="success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+				<div class="modal-content" style="background: rgb(255,255,255,0.9);">
+						<div class="modal-header">
+
+								<h4 class="modal-title" id="myModalLabel"   >
+										我们已经给您发了一封包含密码重置链接的邮件，请注意查收！
+								</h4>
+
+						</div>
+
+
+						<div class="modal-footer" style="background: rgb(1,1,1,0); text-align: center;">
+								<input type="button" style="background: rgb(1,1,1,0); text-align: center;" class="button" onclick="exit()"  data-dismiss="modal" value="关闭窗口">
+
+						</div>
+						</form>
+				</div><!-- /.modal-content -->
+		</div><!-- /.modal -->
+</div>
+</body>
+</html>
