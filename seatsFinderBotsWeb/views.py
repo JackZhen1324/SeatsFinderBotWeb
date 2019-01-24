@@ -113,5 +113,8 @@ def addClass(request):
 
         print(data)
         status_code = requests.post('http://localhost:6800/schedule.json', data=data)
-        return HttpResponse(status=200)
+        if status_code.status_code == requests.codes.ok:
+            return HttpResponse(status=200)
+        else:
+            return HttpResponse(status=500)
     return HttpResponse(status=500)
