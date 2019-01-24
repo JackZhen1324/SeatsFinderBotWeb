@@ -158,7 +158,7 @@ class FormExampleForm extends React.Component {
       };
       console.log(user);
   
-      axios.post('http://127.0.0.1:8000/addClass/', { user })
+      axios.post('http://72.201.206.220:8000/addClass/', { user })
       this.sleep(9000).then(() => {
         setTimeout(() => {
           console.log(this.state.asuID)

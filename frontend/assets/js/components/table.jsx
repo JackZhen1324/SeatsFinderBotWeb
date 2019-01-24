@@ -174,7 +174,7 @@ updateFormData = ()=>
     
   };
   console.log(user2);
-  axios.post('http://127.0.0.1:8000/delClass/', { user2 })
+  axios.post('http://72.201.206.220:8000/delClass/', { user2 })
     .then(res => {
       this.setState({deleting:false})
     })
